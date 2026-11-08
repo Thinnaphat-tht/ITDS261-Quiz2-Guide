@@ -61,6 +61,8 @@ python -m http.server 8765
 | `fonts/` | Chakra Petch และ Sarabun แบบ self-hosted |
 | `DESIGN.md`, `PRODUCT.md` | ระบบดีไซน์ "The Drawing Set" (แนว blueprint) และหลักของโปรเจกต์ |
 
+<div align="center"><sub>ทำโดย Thinnaphat · Mahidol ICT DST</sub></div>
+
 ## หมายเหตุ
 
 - ข้อสอบทั้งหมด**แต่งขึ้นเองจากกฎในสไลด์** ไม่ใช่ข้อสอบจริงของอาจารย์
