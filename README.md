@@ -1,8 +1,8 @@
 <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/"><img src="docs/banner.jpg" alt="ITDS261 Quiz 2 Study Guide: DFD, หา Error ใน DFD, Git, Unit test พร้อมข้อสอบ 240 ข้อ"></a>
 
 <p align="center">
-  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/"><img alt="เปิดเว็บติว" src="https://img.shields.io/badge/%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B8%95%E0%B8%B4%E0%B8%A7-ffc84a?style=for-the-badge&labelColor=0a2f62"></a>
-  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 240 ข้อ" src="https://img.shields.io/badge/%E0%B8%97%E0%B8%B3%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%9A-240%20%E0%B8%82%E0%B9%89%E0%B8%AD-9fd0ff?style=for-the-badge&labelColor=0a2f62"></a>
+  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/"><img alt="เปิดเว็บติว" src="https://img.shields.io/badge/%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B8%95%E0%B8%B4%E0%B8%A7-ffc84a?style=flat-square&labelColor=0a2f62"></a>
+  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 240 ข้อ" src="https://img.shields.io/badge/%E0%B8%97%E0%B8%B3%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%9A-240%20%E0%B8%82%E0%B9%89%E0%B8%AD-9fd0ff?style=flat-square&labelColor=0a2f62"></a>
 </p>
 
 <p align="center">
