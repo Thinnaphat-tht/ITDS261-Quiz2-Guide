@@ -1,8 +1,8 @@
-<a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/"><img src="docs/banner.jpg" alt="ITDS261 Quiz 2 Study Guide: DFD, หา Error ใน DFD, Git, Unit test พร้อมข้อสอบ 240 ข้อ"></a>
+<a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/"><img src="docs/banner.jpg" alt="ITDS261 Quiz 2 Study Guide: DFD, หา Error ใน DFD, Git, Unit test พร้อมข้อสอบ 240 ข้อ"></a>
 
 <p align="center">
-  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/"><img alt="เปิดเว็บติว" src="https://img.shields.io/badge/Open_the_guide-ffc84a?style=for-the-badge&labelColor=0a2f62"></a>
-  <a href="https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 240 ข้อ" src="https://img.shields.io/badge/Quiz-240_questions-9fd0ff?style=for-the-badge&labelColor=0a2f62"></a>
+  <a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/"><img alt="เปิดเว็บติว" src="https://img.shields.io/badge/Open_the_guide-ffc84a?style=for-the-badge&labelColor=0a2f62"></a>
+  <a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 240 ข้อ" src="https://img.shields.io/badge/Quiz-240_questions-9fd0ff?style=for-the-badge&labelColor=0a2f62"></a>
 </p>
 
 <p align="center">
@@ -13,13 +13,13 @@
 
 เว็บติวสอบ Quiz 2 วิชา ITDS261 Software Engineering (ICT มหิดล) ครอบคลุม 4 หัวข้อที่ประกาศสอบ: **DFD Understanding**, **Error detection in DFD**, **Git functions** และ **Unit test** พร้อมข้อสอบฝึก 240 ข้อ
 
-**เปิดเว็บ: https://thinnaphat-tht.github.io/itds261-quiz2-guide/**
+**เปิดเว็บ: https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/**
 
 | ลิงก์ตรงแต่ละหน้า | |
 |---|---|
-| [S1 · DFD: นิยามและกฎ](https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#dfd) | [S2 · หา Error ใน DFD](https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#err) |
-| [S3 · Git functions](https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#git) | [S4 · Unit test + JUnit](https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#unit) |
-| [DRILL · ข้อสอบ 240 ข้อ](https://thinnaphat-tht.github.io/itds261-quiz2-guide/ITDS261-Quiz2-Guide.html#quiz) | |
+| [S1 · DFD: นิยามและกฎ](https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#dfd) | [S2 · หา Error ใน DFD](https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#err) |
+| [S3 · Git functions](https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#git) | [S4 · Unit test + JUnit](https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#unit) |
+| [DRILL · ข้อสอบ 240 ข้อ](https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#quiz) | |
 
 ![หน้าแรก: แผนอ่านตามวันและนับถอยหลังวันสอบ (ธีมมืด)](docs/home-dark.jpg)
 
@@ -37,7 +37,7 @@
 
 ## วิธีเปิด
 
-**เปิดออนไลน์:** https://thinnaphat-tht.github.io/itds261-quiz2-guide/
+**เปิดออนไลน์:** https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/
 
 หรือดาวน์โหลด repo แล้วเปิด `ITDS261-Quiz2-Guide.html` ในเบราว์เซอร์ได้เลย ไม่ต้องติดตั้งอะไร และใช้งานแบบออฟไลน์ได้ (ฟอนต์อยู่ในโฟลเดอร์ `fonts/`)
 
