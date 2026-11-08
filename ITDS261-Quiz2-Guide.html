@@ -754,6 +754,8 @@ public void testGetDisplayNameNospace() {
     pages.forEach(function(p){p.classList.toggle("on",p.id===id)});
     document.querySelectorAll(".bar nav a").forEach(function(a){if(a.getAttribute("href")==="#"+id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
     if(!first)window.scrollTo(0,0);
+    /* deep link: browser jumps to the section anchor, hiding the h1 under the bar; keep reload position */
+    else if(location.hash&&(performance.getEntriesByType("navigation")[0]||{}).type==="navigate")addEventListener("load",function(){window.scrollTo(0,0)});
     document.title=(names[id]||"แหล่งที่มา")+" | ITDS261 Quiz 2";
     observe();
   }
