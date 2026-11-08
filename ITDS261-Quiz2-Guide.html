@@ -249,6 +249,18 @@ svg.dfd{width:100%;height:auto;background:var(--panel);border:1px solid var(--li
 .opt.right{color:var(--ink)}
 .opt.right::after{content:"ถูก";margin-left:auto;font:700 14px/1.7 var(--head);color:var(--ok)}
 .opt.wrong::after{content:"คุณเลือก";margin-left:auto;font:700 14px/1.7 var(--head);color:var(--no)}
+/* answer effects: right = pop + sparkles, wrong = shake */
+.opt{position:relative}
+.opt.pop{animation:qpop .5s cubic-bezier(.2,.9,.3,1.4)}
+.opt.shake,.chip.shake{animation:qshake .45s}
+.chip.pop{animation:qpop .5s cubic-bezier(.2,.9,.3,1.4)}
+.fb.in{animation:qfb .35s ease-out}
+.spark{position:absolute;left:24px;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--ok);pointer-events:none;transform:rotate(45deg);animation:qspark .8s ease-out forwards}
+@keyframes qpop{0%{transform:scale(1);box-shadow:0 0 0 0 var(--ok)}35%{transform:scale(1.045)}100%{transform:scale(1);box-shadow:0 0 0 14px transparent}}
+@keyframes qshake{0%,100%{transform:translateX(0)}15%{transform:translateX(-9px)}35%{transform:translateX(8px)}55%{transform:translateX(-6px)}75%{transform:translateX(4px)}}
+@keyframes qfb{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes qspark{0%{opacity:1;transform:translate(0,0) rotate(45deg) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(225deg) scale(.3)}}
+@media(prefers-reduced-motion:reduce){.opt.pop,.opt.shake,.chip.pop,.chip.shake,.fb.in{animation:none}.spark{display:none}}
 .wl{padding-left:1.4em;max-width:none}
 .wl li{margin:14px 0;padding-top:10px;border-top:1px solid var(--line-soft)}
 .wl li b{display:block;color:var(--ok)}
@@ -701,6 +713,7 @@ public void testGetDisplayNameNospace() {
 
 <dialog id="lb"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><div class="cap"><span id="lbc"></span><button class="btn alt" id="lbx" type="button">ปิด (Esc)</button></div></dialog>
 <script src="quiz-data.js"></script>
+<script src="quiz-data4.js"></script>
 <script src="quiz.js"></script>
 <script src="glossary.js"></script>
 <script>

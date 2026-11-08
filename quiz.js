@@ -94,7 +94,7 @@
 
   function hub() {
     state = null; resetArmed = false;
-    var h = '<h1 class="sheet">ข้อสอบ แยกตามเรื่อง</h1><p>เลือกเรื่อง แล้วเลือกชุด ชุดละ 20 ข้อ เฉลยทันทีทีละข้อ ข้อสอบทั้งหมดผมแต่งเองจากกฎในสไลด์ ไม่ใช่ข้อสอบจริงของอาจารย์ ทุกข้อบอกหน้าสไลด์ที่ใช้อ้างอิง</p>';
+    var h = '<h1 class="sheet">ข้อสอบ แยกตามเรื่อง</h1><p>เลือกเรื่อง แล้วเลือกชุด ชุด 1–3 ชุดละ 20 ข้อ ชุด 4 มี 30 ข้อ เฉลยทันทีทีละข้อ ตอบถูกมีเสียงติ๊ง ตอบผิดมีเสียงแอ๊ด (ปิดเสียงได้ที่ปุ่มด้านล่าง) ข้อสอบทั้งหมดผมแต่งเองจากกฎในสไลด์ ไม่ใช่ข้อสอบจริงของอาจารย์ ทุกข้อบอกหน้าสไลด์ที่ใช้อ้างอิง</p>';
     S.topics.forEach(function (t) {
       h += '<h2 class="sub2">' + t.name + '</h2>';
       if (!t.sets.length) { h += '<p><small>' + (t.note || 'ยังไม่เปิด') + '</small></p>'; return; }
@@ -105,7 +105,7 @@
       });
       h += '</div>';
     });
-    h += '<p style="margin-top:28px"><button class="btn alt" id="qreset" type="button">ล้างคะแนนสูงสุดทั้งหมด</button></p>';
+    h += '<p style="margin-top:28px"><button class="btn alt" id="qmute" type="button">เสียงเฉลย: ' + (store('q2-mute') === '1' ? 'ปิดอยู่ (กดเพื่อเปิด)' : 'เปิดอยู่ (กดเพื่อปิด)') + '</button> <button class="btn alt" id="qreset" type="button">ล้างคะแนนสูงสุดทั้งหมด</button></p>';
     host.innerHTML = h;
   }
 
@@ -158,6 +158,38 @@
   function answer(k) {
     var st = state; if (st.ans[st.i] !== null) return;
     st.ans[st.i] = +k; show(false);
+    fx(+k === st.qs[st.i].a);
+  }
+
+  /* feedback effect: sparkle + chime when right, shake + buzz when wrong (sound can be muted) */
+  var AC = null;
+  function sound(ok) {
+    if (store('q2-mute') === '1') return;
+    try {
+      AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+      var t = AC.currentTime, notes = ok ? [[988, 0, .12], [1319, .09, .26]] : [[170, 0, .16], [130, .14, .3]];
+      notes.forEach(function (n) {
+        var o = AC.createOscillator(), g = AC.createGain();
+        o.type = ok ? 'sine' : 'sawtooth'; o.frequency.value = n[0];
+        g.gain.setValueAtTime(.0001, t + n[1]); g.gain.exponentialRampToValueAtTime(ok ? .16 : .09, t + n[1] + .02); g.gain.exponentialRampToValueAtTime(.0001, t + n[2]);
+        o.connect(g); g.connect(AC.destination); o.start(t + n[1]); o.stop(t + n[2] + .02);
+      });
+    } catch (e) { /* no audio available */ }
+  }
+  function fx(ok) {
+    var el = host.querySelector(ok ? '.opt.right' : '.opt.wrong'), chip = host.querySelector('.chip.cur'), fb = host.querySelector('.fb');
+    sound(ok);
+    if (el) el.classList.add(ok ? 'pop' : 'shake');
+    if (chip) chip.classList.add(ok ? 'pop' : 'shake');
+    if (fb) fb.classList.add('in');
+    if (ok && el) {
+      for (var i = 0; i < 10; i++) {
+        var s = document.createElement('span'), a = i / 10 * 6.283;
+        s.className = 'spark'; s.style.setProperty('--dx', Math.round(Math.cos(a) * (46 + i % 3 * 14)) + 'px'); s.style.setProperty('--dy', Math.round(Math.sin(a) * (30 + i % 3 * 10)) + 'px');
+        el.appendChild(s);
+      }
+      setTimeout(function () { el.querySelectorAll('.spark').forEach(function (x) { x.remove(); }); }, 900);
+    }
   }
 
   function finish() {
@@ -190,6 +222,7 @@
       else if (c.id === 'qrestart' || c.id === 'qagain') start(state.t.id, state.si, state.only);
       else if (c.id === 'qwrong') start(state.t.id, state.si, state.wrongIdx.slice());
       else if (c.id === 'qreview') { state.i = 0; show(true); }
+      else if (c.id === 'qmute') { store('q2-mute', store('q2-mute') === '1' ? '0' : '1'); hub(); }
       else if (c.id === 'qreset') {
         if (!resetArmed) { resetArmed = true; c.textContent = 'กดอีกครั้งเพื่อยืนยันการล้างคะแนนทั้งหมด'; }
         else { S.topics.forEach(function (t) { t.sets.forEach(function (_, i) { store(key(t.id, i), null); }); }); hub(); }
