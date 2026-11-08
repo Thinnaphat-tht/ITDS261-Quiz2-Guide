@@ -82,6 +82,21 @@ small{color:var(--muted);font-size:.9rem}
 .trap .tag,.hand .tag{display:none}
 .tag{font:700 13px/1 var(--head);letter-spacing:.08em;color:var(--brand);margin-right:6px}
 .card{border:1px solid var(--line);padding:16px 18px;margin:16px 0}
+/* glossary map + term popups (glossary.js) */
+#glmap{scroll-margin-top:90px}
+@media(min-width:1120px){.page>#glmap{max-width:none;margin-right:-396px}}
+#glmap .subsec{margin:22px 0 8px}
+.glgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.gcard{border:1px solid var(--line);padding:10px 12px 12px;font-size:.92rem;line-height:1.55}
+.gi{display:block;width:100%;max-width:168px;height:auto;margin:0 0 6px;color:var(--muted)}
+.gt{display:block;font:700 15px/1.3 var(--head);color:var(--ink);margin-bottom:2px}
+.gcard span b,#gtip span b{color:var(--em)}
+.term,.term-demo{border-bottom:1.5px dashed var(--brand);cursor:help}
+.term:hover,.term:focus-visible{background:var(--chip)}
+.term:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#gtip{position:fixed;z-index:60;width:min(300px,calc(100vw - 16px));background:var(--panel);border:1px solid var(--brand);padding:12px 14px;font:400 15px/1.55 var(--body);color:var(--ink)}
+#gtip .gi{max-width:150px}
+#gtip .gmore{display:block;margin-top:6px;font-size:14px;color:var(--brand)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 
 code,pre{font-family:Consolas,"Cascadia Mono",monospace;background:var(--chip);color:var(--ink)}
@@ -323,6 +338,10 @@ main:focus,h1:focus{outline:none}
 <section id="dfd" class="page" data-s="1" data-src="L6 · L7" data-time="~30 นาที">
 <h1 class="sheet">1. DFD Understanding : definition และ rules</h1>
 
+<h2 class="sec" style="margin-top:0">แผนที่คำศัพท์ DFD (อ่านก่อน)</h2>
+<p>ศัพท์ทั้งหมดแบ่งเป็น 4 กลุ่ม ส่วนที่เป็น<b>เส้นหนาสีเหลือง</b> (ธีมสว่างเป็นสีน้ำตาล) ในภาพเล็กคือสิ่งที่คำนั้นหมายถึง ในเนื้อหาด้านล่าง คำที่มี<span class="term-demo">เส้นประใต้คำ</span> แตะหรือชี้เพื่อดูความหมายได้ทันที</p>
+<div id="glmap"></div>
+
 <h2 class="sec">1.1 DFD และสัญลักษณ์ 4 ตัว</h2>
 <figure><div class="plate"><img src="img/L6_p10.jpg" alt="L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)" loading="lazy"></div><figcaption>L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)</figcaption></figure>
 <div class="def"><b>Data Flow Diagram (DFD)</b> = แผนภาพแสดง <i>ข้อมูลไหลผ่านระบบ</i> เริ่มเป็น input แล้วถูกแปลงเป็น output ใช้ในการ requirements modeling (flow-oriented modeling)</div>
@@ -422,6 +441,7 @@ main:focus,h1:focus{outline:none}
 <section id="err" class="page" data-s="2" data-src="L6" data-time="~25 นาที">
 <h1 class="sheet">2. Error detection in DFD</h1>
 <p>อาจารย์บอกว่าส่วนนี้ <b>ให้วิเคราะห์ DFD แล้วตอบคำถาม</b> ใช้เช็คลิสต์ด้านล่างไล่ทีละเส้น ทีละกล่อง</p>
+<p><small>ลืมศัพท์? แตะคำที่มีเส้นประใต้คำ หรือดู<a href="#dfd" class="gmore">แผนที่คำศัพท์ใน S1</a></small></p>
 
 <div class="card">
 <h2 class="sec" style="margin-top:0">เช็คลิสต์หา error (ไล่ตามลำดับ)</h2>
@@ -682,6 +702,7 @@ public void testGetDisplayNameNospace() {
 <dialog id="lb"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><div class="cap"><span id="lbc"></span><button class="btn alt" id="lbx" type="button">ปิด (Esc)</button></div></dialog>
 <script src="quiz-data.js"></script>
 <script src="quiz.js"></script>
+<script src="glossary.js"></script>
 <script>
 (function(){
   var root=document.documentElement;root.classList.add("js");
