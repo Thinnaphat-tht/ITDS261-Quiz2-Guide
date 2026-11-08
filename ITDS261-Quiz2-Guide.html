@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="th" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITDS261 Quiz 2 Guide</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --ground:#0d3770;--panel:#0a2f62;--ink:#eaf3ff;--muted:#b6cff5;--line:rgba(159,208,255,.42);--line-soft:rgba(159,208,255,.14);
+  --brand:#9fd0ff;--accent:#ffc84a;--accent-ink:#ffc84a;--red:#ff8a8a;--chip:#123f80;--shadow:rgba(0,0,0,.45);
+  --btn-bg:#ffc84a;--btn-ink:#0a2f62;--head:"Chakra Petch","Sarabun",sans-serif;--body:"Sarabun","Noto Sans Thai",Tahoma,sans-serif;
+}
+:root[data-theme="light"]{
+  --ground:#e6eefa;--panel:#ffffff;--ink:#0b2a5b;--muted:#3b527c;--line:rgba(20,80,176,.40);--line-soft:rgba(20,80,176,.12);
+  --brand:#1450b0;--accent:#ffd45e;--accent-ink:#8a4b00;--red:#c4262e;--chip:#e8f0fc;--shadow:rgba(10,40,90,.25);
+  --btn-bg:#0f3f8f;--btn-ink:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:400 18px/1.8 var(--body);background-color:var(--ground);
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:32px 32px}
+::selection{background:var(--accent);color:#0a2f62}
+a{color:var(--brand);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.bar{position:sticky;top:0;z-index:30;background:var(--ground);border-bottom:1px solid var(--line)}
+.bar .in{max-width:1220px;margin:auto;padding:0 20px;display:flex;align-items:stretch;gap:4px;overflow-x:auto}
+.mark{font:700 15px/1 var(--head);letter-spacing:.1em;padding:18px 18px 18px 0;margin-right:8px;border-right:1px solid var(--line);white-space:nowrap;color:var(--ink)}
+.bar nav{display:flex;gap:2px;flex:1}
+.bar nav a{display:flex;flex-direction:column;justify-content:center;padding:8px 14px;text-decoration:none;color:var(--muted);font:500 15px/1.25 var(--head);white-space:nowrap;border-bottom:3px solid transparent}
+.bar nav a i{font-style:normal;font-size:13px;letter-spacing:.1em;color:var(--brand)}
+.bar nav a:hover{color:var(--ink)}
+.bar nav a[aria-current]{color:var(--ink);border-bottom-color:var(--accent)}
+.tog{align-self:center;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 14px;font:500 14px/1 var(--head);letter-spacing:.04em;white-space:nowrap}
+.tog:hover{background:var(--chip)}
+#setbar{height:3px;background:var(--line-soft)}
+#setbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .7s cubic-bezier(.2,.7,.2,1)}
+
+main{max-width:1220px;margin:0 auto;padding:28px 20px 40px}
+.page{display:none;background:var(--panel);border:1px solid var(--line);padding:40px 44px 36px}
+.page.on{display:block;animation:sheetIn .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes sheetIn{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@media(min-width:1120px){
+  .page:not(.cover){padding-right:440px}
+  .page:not(.cover) figure{float:right;clear:right;width:380px;margin:6px -400px 18px 24px}
+  .page:not(.cover)::after{content:"";display:block;clear:both}
+}
+@media(min-width:1120px){
+  #err{padding-right:44px}
+  #err figure{float:none;width:100%;max-width:640px;margin:14px 0 20px}
+}
+.page>*{max-width:70ch}
+#err .hunt{max-width:760px}.page>.turn,.page>.top,.page>.index,.page>.two,.page>.tb{max-width:none}
+
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);text-wrap:balance}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:.01em}
+h2{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.25;margin:0 0 14px;font-weight:700}
+.sub{font-size:1.3rem!important;color:var(--brand);margin:34px 0 8px!important}
+h3{font-size:1.3rem;margin:34px 0 8px;font-weight:700;color:var(--brand)}
+h4{font-size:1.08rem;margin:20px 0 4px;font-weight:700}
+p{margin:.6em 0}
+ul,ol{padding-left:1.3em;margin:.5em 0}
+li{margin:.3em 0}
+small{color:var(--muted);font-size:.9rem}
+
+.tb{display:inline-grid;grid-template-columns:repeat(4,auto);border:1px solid var(--line);margin:0 0 26px;font:500 14px/1.3 var(--head)}
+.tb div{padding:8px 14px;border-right:1px solid var(--line)}
+.tb div:last-child{border-right:0}
+.tb span{display:block;font-size:13px;letter-spacing:.1em;color:var(--muted)}
+.tb b{font-size:16px;font-weight:700;color:var(--ink)}
+.tb .st b{color:var(--muted)}
+.tb .st.ok b{color:var(--accent-ink)}
+
+.def,.trap,.hand{position:relative;margin:28px 0 20px;padding:18px 18px 12px;border:1px solid var(--line);background:var(--panel)}
+.def::before,.trap::before,.hand::before{position:absolute;top:-13px;left:14px;padding:0 8px;background:var(--panel);font:700 14px/24px var(--head);letter-spacing:.08em}
+.def::before{content:"นิยาม";color:var(--brand)}
+.trap{border-color:var(--accent-ink)}
+.trap::before{content:"กับดัก";color:var(--accent-ink)}
+.hand{border-style:dashed}
+.hand::before{content:"โน้ตของคุณ";color:var(--brand)}
+.trap .tag,.hand .tag{display:none}
+.tag{font:700 13px/1 var(--head);letter-spacing:.08em;color:var(--brand);margin-right:6px}
+.card{border:1px solid var(--line);padding:16px 18px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+
+code,pre{font-family:Consolas,"Cascadia Mono",monospace;background:var(--chip);color:var(--ink)}
+code{padding:1px 6px;font-size:.88em}
+pre{padding:12px 14px;overflow-x:auto;font-size:.9rem;line-height:1.55;border:1px solid var(--line-soft)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.96rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;line-height:1.55}
+th{background:var(--chip);font:700 14px/1.4 var(--head);letter-spacing:.04em}
+
+figure{margin:18px 0}
+.plate{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px var(--shadow)}
+.plate img{display:block;width:100%;height:auto;cursor:zoom-in}
+:root[data-theme="dark"] .plate img{filter:brightness(.94)}
+figcaption{margin-top:8px;font:500 13px/1.45 var(--head);letter-spacing:.03em;color:var(--muted)}
+.js figure:not(.seen) .plate img{clip-path:inset(0 100% 0 0)}
+.js figure .plate img{transition:clip-path .9s cubic-bezier(.3,.7,.2,1)}
+.js figure.seen .plate img{clip-path:inset(0 0 0 0)}
+
+.hunt-ui{border:1px solid var(--accent-ink);padding:12px 14px;margin:0 0 20px;font-size:.98rem}
+.hunt-ui b{font:700 18px/1 var(--head);color:var(--accent-ink)}
+.hunt-ui button{margin-left:10px}
+#hl{list-style:none;padding:0;margin:0}
+#hl li{border-top:1px solid var(--line);padding-top:8px;margin-top:8px;animation:fade .5s both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.marks ellipse{fill:none;stroke:#d62f3a;stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .7s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.plate.miss{animation:miss .35s}
+@keyframes miss{20%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
+.hunt .plate img{cursor:crosshair}
+
+button.btn,a.go{display:inline-block;cursor:pointer;border:0;background:var(--btn-bg);color:var(--btn-ink);padding:12px 22px;font:700 16px/1.2 var(--head);letter-spacing:.04em;text-decoration:none}
+button.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line);padding:8px 14px;font-size:14px}
+a.go:hover,button.btn:hover{filter:brightness(1.08)}
+details{border:1px solid var(--line);margin:10px 0;padding:8px 14px}
+summary{cursor:pointer;font:700 15px/1.6 var(--head);color:var(--brand);letter-spacing:.03em}
+details[open]>summary{margin-bottom:8px}
+.q{margin:20px 0 4px;font-weight:700}
+label.chk{display:flex;gap:12px;align-items:center;margin:34px 0 0;padding:14px 16px;border:1px solid var(--line);cursor:pointer;font:700 16px/1.3 var(--head)}
+label.chk input{width:22px;height:22px;accent-color:var(--accent)}
+
+.turn{display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);clear:both}
+.turn a{display:block;padding:10px 16px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font:500 15px/1.3 var(--head)}
+.turn a:hover{background:var(--chip)}
+.turn small{display:block;letter-spacing:.1em}
+
+.cover{padding:44px}
+.cover .top{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+.days{display:flex;align-items:baseline;gap:16px;margin:18px 0 4px}
+.days b{font:700 clamp(6rem,16vw,11rem)/.85 var(--head);color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.days span{font:500 20px/1.3 var(--head);color:var(--muted)}
+.when{font:500 16px/1.5 var(--head);letter-spacing:.04em;margin:0 0 22px}
+.tl{list-style:none;margin:0;padding:6px 0 6px 22px;border-left:2px solid var(--line)}
+.tl li{position:relative;padding:0 0 22px 18px;margin:0}
+.tl li::before{content:"";position:absolute;left:-30px;top:8px;width:14px;height:14px;background:var(--panel);border:2px solid var(--line)}
+.tl li.now::before{background:var(--accent);border-color:var(--accent);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent)}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.tl b{display:block;font:700 17px/1.4 var(--head);color:var(--ink)}
+.index{margin-top:36px;border-top:1px solid var(--line)}
+.index a.row{display:grid;grid-template-columns:3.2rem 1fr auto 8rem;gap:16px;align-items:center;padding:16px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.index a.row:hover{background:var(--chip)}
+.index .n{font:700 22px/1 var(--head);color:var(--brand)}
+.index .t{font:700 20px/1.3 var(--head)}
+.index .m{font:500 14px/1.3 var(--head);color:var(--muted)}
+.stamp{justify-self:end;font:700 14px/1 var(--head);letter-spacing:.1em;color:var(--accent-ink);border:2px solid var(--accent-ink);padding:6px 10px;transform:rotate(-6deg);opacity:0}
+.stamp.on{opacity:1;animation:stamp .45s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes stamp{from{transform:rotate(-14deg) scale(1.9);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+.cover .two{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:10px}
+
+dialog{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:14px;max-width:min(96vw,1500px);width:96vw}
+dialog::backdrop{background:rgba(3,14,36,.82)}
+dialog img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:#fff}
+dialog .cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font:500 14px/1.4 var(--head)}
+
+@media(max-width:1119px){
+  .page{padding:24px 20px}
+  figure{max-width:560px}
+  .cover .top,.cover .two{grid-template-columns:1fr;gap:20px}
+  .index a.row{grid-template-columns:2.6rem 1fr}
+  .index .m,.index .stamp{grid-column:2;justify-self:start}
+}
+@media(max-width:640px){
+  body{font-size:17px}
+  .tb{grid-template-columns:repeat(2,auto)}
+  .tb div:nth-child(2){border-right:0}
+  .tb div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js figure:not(.seen) .plate img{clip-path:none}
+  .stamp.on{opacity:1}
+  .marks ellipse{stroke-dashoffset:0}
+}
+
+:root{--em:#ffe08a;--ok:#5ee39b;--no:#ff7b7b}
+:root[data-theme="light"]{--em:#0a3a8f;--ok:#14803f;--no:#c4262e}
+b,strong{color:var(--em);font-weight:700}
+.sub2{font:700 1.2rem/1.4 var(--head);color:var(--brand);margin:28px 0 8px}
+.sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:none}
+.setcard{text-align:left;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:14px 16px;font:400 15px/1.5 var(--body);display:flex;flex-direction:column;gap:4px}
+.setcard:hover{background:var(--chip)}
+.setcard b{font:700 18px/1.3 var(--head);color:var(--brand)}
+.setcard i{font:500 13px/1.4 var(--head);font-style:normal;color:var(--muted)}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 14px/1.4 var(--head);flex-wrap:wrap;max-width:none}
+.qhead b{color:var(--em);font-size:16px}
+.qbar{height:4px;background:var(--line-soft);margin:10px 0 18px}
+.qbar i{display:block;height:100%;background:var(--accent)}
+.qtext{font-size:1.15rem;font-weight:600;line-height:1.7}
+.qfig{margin:12px 0;max-width:780px}
+.qfig img{width:100%;height:auto;border:1px solid var(--line);background:#fff;display:block}
+.qfig{overflow-x:auto}
+@media(max-width:640px){svg.dfd{min-width:680px}.chip{width:34px;height:34px}}
+svg.dfd{width:100%;height:auto;background:var(--panel);border:1px solid var(--line);display:block}
+.dfd .sh{fill:none;stroke:var(--ink);stroke-width:1.6}
+.dfd .fl{stroke:var(--ink);stroke-width:1.6}
+.dfd text{fill:var(--ink);font:14px/1 "Sarabun",sans-serif}
+.dfd .fx{fill:var(--em);font-size:13px;paint-order:stroke;stroke:var(--panel);stroke-width:4px}
+.opts{display:grid;gap:10px;margin:16px 0}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 14px;font:400 17px/1.6 var(--body)}
+.opt i{font:700 15px/1.7 var(--head);font-style:normal;min-width:1.6rem;color:var(--brand)}
+.opt:hover:not(:disabled){background:var(--chip)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.right{border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 22%,transparent)}
+.opt.wrong{border:2px solid var(--no);background:color-mix(in srgb,var(--no) 22%,transparent)}
+.opt.right i{color:var(--ok)}
+.opt.wrong i{color:var(--no)}
+.fb{border:1px solid var(--line);padding:12px 14px;margin:6px 0 14px;max-width:none}
+.fb.ok{border-color:var(--ok)}
+.fb.no{border-color:var(--no)}
+.fb>b{font:700 17px/1.4 var(--head);margin-right:8px}
+.fb.ok>b{color:var(--ok)}
+.fb.no>b{color:var(--no)}
+.fb .src{display:block;margin-top:6px}
+.score{font:700 22px/1.2 var(--head);margin:10px 0}
+.score b{font-size:4.2rem;color:var(--em)}
+.score.good b{color:var(--ok)}
+.score.low b{color:var(--no)}
+.score span{color:var(--muted);font-size:20px}
+.qprog{font:500 15px/1.5 var(--head);margin:10px 0 8px}
+.qprog .g{color:var(--ok);font-weight:700}
+.qprog .r{color:var(--no);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;max-width:none}
+.chip{width:38px;height:38px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);font:700 14px/1 var(--head)}
+.chip:hover{background:var(--chip)}
+.chip.ok{background:var(--ok);border-color:var(--ok);color:#06210f}
+.chip.no{background:var(--no);border-color:var(--no);color:#2a0606}
+[data-theme="light"] .chip.ok,[data-theme="light"] .chip.no{color:#fff}
+.chip.cur{outline:3px solid var(--accent);outline-offset:2px}
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:8px;max-width:none}
+.opt.right{color:var(--ink)}
+.opt.right::after{content:"ถูก";margin-left:auto;font:700 14px/1.7 var(--head);color:var(--ok)}
+.opt.wrong::after{content:"คุณเลือก";margin-left:auto;font:700 14px/1.7 var(--head);color:var(--no)}
+.wl{padding-left:1.4em;max-width:none}
+.wl li{margin:14px 0;padding-top:10px;border-top:1px solid var(--line-soft)}
+.wl li b{display:block;color:var(--ok)}
+.wl li small{display:block;margin-top:2px}
+
+.page h1.sheet{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.25;margin:0 0 14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;z-index:40;background:var(--btn-bg);color:var(--btn-ink);border:0;padding:10px 16px;font:700 15px/1 var(--head);cursor:pointer}
+.skip:focus{top:8px}
+main:focus,h1:focus{outline:none}
+.pick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.95rem}
+.pk{cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;min-height:36px;font:500 14px/1.2 var(--head)}
+.pk:hover{background:var(--chip)}
+.pk.hit{border-color:var(--ok);color:var(--ok)}
+.pk.miss{border-color:var(--no);color:var(--no)}
+.hmsg{min-height:1.5em;font-weight:600;margin:4px 0}
+.plate img[role=button]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.page h2.sec{font-size:1.3rem;line-height:1.4;margin:34px 0 8px;color:var(--brand)}
+.page h3.subsec{font-size:1.08rem;margin:20px 0 4px;color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="bar"><button class="skip" type="button" id="skip">ข้ามไปเนื้อหา</button><div class="in">
+  <span class="mark">ITDS261 · QUIZ 2</span>
+  <nav aria-label="สารบัญ">
+    <a href="#home"><i>COVER</i>Home</a>
+    <a href="#dfd"><i>S1</i>DFD</a>
+    <a href="#err"><i>S2</i>หา Error</a>
+    <a href="#git"><i>S3</i>Git</a>
+    <a href="#unit"><i>S4</i>Unit test</a>
+    <a href="#quiz"><i>DRILL</i>ข้อสอบ</a>
+  </nav>
+  <button class="tog" id="themeBtn" type="button">สว่าง / มืด</button>
+</div><div id="setbar"><i></i></div></header>
+<main id="content" tabindex="-1">
+
+<section id="home" class="page cover">
+<div class="top">
+  <div>
+    <h1>ITDS261<br>Quiz 2</h1>
+    <div class="days"><b id="dn">2</b><span id="dl">วันถึงสอบ</span></div>
+    <p class="when">Section 2 &middot; 10 พ.ย. 2569 &middot; 10.45–12.15</p>
+    <div id="next"></div>
+  </div>
+  <div>
+    <h2 class="sub" style="margin-top:6px">แผนอ่านตามวัน</h2>
+    <ol class="tl">
+      <li data-d="8"><b>อา. 8 พ.ย.</b><a href="#dfd">S1 DFD: นิยามและกฎ</a> (~30 นาที)<br><a href="#err">S2 หา Error ใน DFD</a> (~25 นาที)</li>
+      <li data-d="9"><b>จ. 9 พ.ย.</b><a href="#git">S3 Git</a> (~25 นาที)<br><a href="#unit">S4 Unit test</a> (~35 นาที)<br>ทำ<a href="#quiz">ข้อสอบ</a></li>
+      <li data-d="10"><b>อ. 10 พ.ย. วันสอบ</b>ทวนกับดักด้านล่างก่อนเข้าห้อง ก่อน 10.45</li>
+    </ol>
+    <small>เวลาเป็นค่าประมาณ ปรับตามความเร็วของคุณ</small>
+  </div>
+</div>
+
+<div class="index">
+  <a class="row" href="#dfd"><span class="n">S1</span><span class="t">DFD: นิยามและกฎ</span><span class="m">L6 · L7 · ~30 นาที</span><span class="stamp" data-k="dfd">อ่านแล้ว</span></a>
+  <a class="row" href="#err"><span class="n">S2</span><span class="t">หา Error ใน DFD</span><span class="m">L6 · ~25 นาที</span><span class="stamp" data-k="err">อ่านแล้ว</span></a>
+  <a class="row" href="#git"><span class="n">S3</span><span class="t">Git functions</span><span class="m">L11 · cheat sheet · ~25 นาที</span><span class="stamp" data-k="git">อ่านแล้ว</span></a>
+  <a class="row" href="#unit"><span class="n">S4</span><span class="t">Unit test + JUnit</span><span class="m">L12 · L13 · ~35 นาที</span><span class="stamp" data-k="unit">อ่านแล้ว</span></a>
+</div>
+
+<div class="two">
+  <div>
+    <h2 class="sub">ข้อสอบมีอะไรบ้าง</h2>
+    <p>ตามใบประกาศ: DFD Understanding, Error detection in DFD, Git functions, Unit test</p>
+    <ul>
+      <li>อาจารย์ภัทรพรตอบอีเมล: DFD Understanding วัด <b>definition และ rules</b> ไม่ใช่วาด Level 1/2/3</li>
+      <li>Error detection = วิเคราะห์ DFD ที่ให้ แล้วตอบคำถาม</li>
+      <li>ปิดหนังสือ ห้ามนำโน้ตหรือ cheat sheet เข้า</li>
+    </ul>
+  </div>
+  <div class="trap" style="margin-top:28px">
+    <ul>
+      <li>Data flow ต้องมี process อยู่ปลายหนึ่ง: entity&rarr;entity, entity&harr;store, store&rarr;store ผิดหมด</li>
+      <li>Process ต้องมีอย่างน้อย 1 input และ 1 output</li>
+      <li>Context diagram: process เดียว เลข 0 &bull; Level 2 ใช้ 1.1, Level 3 ใช้ 1.1.1</li>
+      <li><code>git pull</code> = fetch + merge &bull; add &rarr; commit &rarr; push คนละขั้น</li>
+      <li>Hotfix แตกจาก tag บน master &bull; feature/release แตกจาก develop</li>
+      <li>Cyclomatic complexity = decision node + 1</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ===================== 1. DFD ===================== -->
+<section id="dfd" class="page" data-s="1" data-src="L6 · L7" data-time="~30 นาที">
+<h1 class="sheet">1. DFD Understanding : definition และ rules</h1>
+
+<h2 class="sec">1.1 DFD และสัญลักษณ์ 4 ตัว</h2>
+<figure><div class="plate"><img src="img/L6_p10.jpg" alt="L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)" loading="lazy"></div><figcaption>L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)</figcaption></figure>
+<div class="def"><b>Data Flow Diagram (DFD)</b> = แผนภาพแสดง <i>ข้อมูลไหลผ่านระบบ</i> เริ่มเป็น input แล้วถูกแปลงเป็น output ใช้ในการ requirements modeling (flow-oriented modeling)</div>
+<table>
+<tr><th>องค์ประกอบ</th><th>นิยาม (ตามสไลด์)</th><th>Yourdon/DeMarco</th><th>Gane/Sarson</th></tr>
+<tr><td><b>External entity</b></td><td>ผู้ <b>ผลิตหรือบริโภคข้อมูล</b> (producer/consumer of data) เป็นคน องค์กร หรือระบบ <i>ภายนอก</i> ระบบ ข้อมูลต้องมีที่มาและต้องถูกส่งไปที่ใดที่หนึ่งเสมอ</td><td>สี่เหลี่ยม</td><td>สี่เหลี่ยม</td></tr>
+<tr><td><b>Process</b></td><td><b>ตัวแปลงข้อมูล</b> (data transformer) เปลี่ยน input เป็น output เช่น คำนวณ ตัดสินใจ เรียง/สรุป จัดระเบียบ สั่งงาน process อื่น ใช้ข้อมูลที่เก็บไว้ ข้อมูลต้องถูกประมวลผลเสมอ</td><td>วงกลม</td><td>สี่เหลี่ยมมุมมน แบ่งเป็น 2 ช่อง (เลข / ชื่อ)</td></tr>
+<tr><td><b>Data flow</b></td><td><b>ข้อมูลที่กำลังเคลื่อนที่</b> (data in motion) = input ของ process หรือ output ของ process; การสร้าง/ลบ/แก้ข้อมูลในไฟล์หรือฐานข้อมูลเรียกว่า data store</td><td>ลูกศร</td><td>ลูกศร</td></tr>
+<tr><td><b>Data store</b></td><td>ที่เก็บข้อมูลถาวรที่ process ต้องใช้หรือสร้าง ลูกศร <b>ออก</b>จาก store = การดึงข้อมูล (retrieval) ลูกศร <b>เข้า</b> store = การอัปเดต/เพิ่มข้อมูล</td><td>เส้นขนาน 2 เส้น</td><td>สี่เหลี่ยมปลายเปิด มีช่องเลข D1, D2 ด้านซ้าย</td></tr>
+</table>
+<div class="trap"><span class="tag t">กับดัก</span> <b>Data flow packet concept</b>: ข้อมูลที่ต้อง "เดินทางไปด้วยกัน" ให้วาดเป็น <b>flow เดียว</b> ไม่ว่าจะมีเอกสารกี่ใบ (สไลด์ L6 หน้า 15 ตัวอย่าง Itemized calls + Invoice รวมเป็นเส้นเดียว)</div>
+<p><b>ตัวอย่างสไลด์ของวงกลม process:</b> compute triangle area รับ base, height ส่ง area &bull; Process ต้องผ่านการ "refine" จนแต่ละ bubble ทำเรื่องเดียว</p>
+
+<h2 class="sec">1.2 Context diagram และลำดับชั้น (hierarchy)</h2>
+<figure><div class="plate"><img src="img/L6_p21.jpg" alt="L6 หน้า 21: ตัวอย่าง Level-0 DFD (context diagram)" loading="lazy"></div><figcaption>L6 หน้า 21: ตัวอย่าง Level-0 DFD (context diagram)</figcaption></figure><figure><div class="plate"><img src="img/L6_p22.jpg" alt="L6 หน้า 22: Data Flow Hierarchy (level 0 แตกเป็น level 1)" loading="lazy"></div><figcaption>L6 หน้า 22: Data Flow Hierarchy (level 0 แตกเป็น level 1)</figcaption></figure>
+<div class="def"><b>Context diagram (Level 0)</b> = DFD ระดับบนสุดของทุก process model แสดงระบบทั้งระบบเป็น <b>process เดียว (หมายเลข 0)</b> และแสดง <b>external entity ทั้งหมด</b> ที่ส่งหรือรับข้อมูลกับระบบ</div>
+<ul>
+<li>เริ่มวาดจาก context diagram เสมอ (หรือเรียก level 0), ต้องแสดง external entity ที่ level 0 และ label ลูกศรทุกเส้น</li>
+<li>DFD ขยายรายละเอียดเป็นหลายระดับด้วย <b>decomposition</b>: child diagram แสดงส่วนหนึ่งของ parent ให้ละเอียดขึ้น</li>
+<li>แต่ละ bubble ถูก refine จนทำสิ่งเดียว &bull; <i>expansion ratio</i> ลดลงเมื่อระดับเพิ่ม &bull; ระบบส่วนใหญ่ต้องการ <b>3–7 ระดับ</b> &bull; ลูกศรเส้นเดียวอาจถูกขยายเมื่อลงระดับ (data dictionary ให้รายละเอียด)</li>
+</ul>
+<h3 class="subsec">การให้เลข (Diagram numbering)</h3>
+<figure><div class="plate"><img src="img/L6_p34.jpg" alt="L6 หน้า 34: DFD Numbering + Hierarchical Consistency" loading="lazy"></div><figcaption>L6 หน้า 34: DFD Numbering + Hierarchical Consistency</figcaption></figure><figure><div class="plate"><img src="img/L6_p37.jpg" alt="L6 หน้า 37: ตัวอย่าง Level 2 ของ Library Query System" loading="lazy"></div><figcaption>L6 หน้า 37: ตัวอย่าง Level 2 ของ Library Query System</figcaption></figure>
+<table>
+<tr><th>ระดับ</th><th>เลข process</th><th>ตัวอย่าง</th></tr>
+<tr><td>Context</td><td>"Level 0" process เป็น <b>0</b></td><td>0</td></tr>
+<tr><td>Level 1</td><td>จำนวนเต็ม</td><td>1, 2, 3</td></tr>
+<tr><td>Level 2</td><td>มี <b>1 จุด</b>: เลขแม่ . เลขเฉพาะ</td><td>1.1, 1.2, 1.3</td></tr>
+<tr><td>Level 3</td><td>มี <b>2 จุด</b></td><td>1.1.1, 1.1.2</td></tr>
+</table>
+<p>ตัวอย่างสไลด์ Library Query System: Level 0 = <code>0 Library Query System</code> (Student, Publishers) &rarr; Level 1 = <code>1 Search for book</code>, <code>2 Check member status</code> &rarr; Level 2 ของ process 1 = <code>1.1 Search by book name</code>, <code>1.2 Search by author name</code></p>
+
+<h2 class="sec">1.3 Balancing และ consistency</h2>
+<figure><div class="plate"><img src="img/L6_p26.jpg" alt="L6 หน้า 26: ความต่างระหว่าง Parent diagram กับ Child diagram" loading="lazy"></div><figcaption>L6 หน้า 26: ความต่างระหว่าง Parent diagram กับ Child diagram</figcaption></figure>
+<div class="def"><b>Balancing</b> = ทำให้ข้อมูลที่แสดงในระดับหนึ่งของ DFD ถูกต้องตรงกับระดับถัดไป: data flow ของ parent ต้องถูกส่งต่อลงไปใน child diagram; child เพิ่ม process และ data flow ใหม่ได้</div>
+<ul>
+<li>Input (output) flow ของ parent ต้องปรากฏใน child เป็น input (output) &bull; และ flow ของ child ต้องปรากฏใน parent ด้วย</li>
+<li>Output flow ของ child ต้องตรงกับ parent process (matching parent-child decomposition, matching data store)</li>
+<li>Child diagram <b>เพิ่ม error lines และ transaction files ได้</b> (สไลด์ L6 หน้า 26) โดยไม่ถือว่าไม่ balance</li>
+</ul>
+<h3 class="subsec">Dataflow analysis: Internal consistency (L6 หน้า 29–30)</h3>
+<table>
+<tr><th>องค์ประกอบ</th><th>ข้อกำหนดตามสไลด์</th></tr>
+<tr><td>Context diagram</td><td>ต้องมี &bull; มี <b>process เดียว</b> &bull; อย่างน้อย 1 input จาก external entity และ 1 output ไป external entity &bull; process ต้องเลข <b>0</b></td></tr>
+<tr><td>Detailed DFD</td><td>อย่างน้อย 1 process &bull; <b>ไม่เกิน 7 process</b></td></tr>
+<tr><td>Process</td><td>อย่างน้อย <b>1 input และ 1 output</b> &bull; ต้องเชื่อมกับ data store, process หรือ external entity &bull; ต้องมี label</td></tr>
+<tr><td>External entity</td><td>ปรากฏเฉพาะใน context diagram (ตามสไลด์) &bull; ต้องเชื่อมกับ process &bull; ต้องมี label</td></tr>
+<tr><td>Data flow</td><td>ต้องเป็นตัวเชื่อม <b>ระหว่าง process กับ</b> process อื่น / data store / external entity &bull; flow เข้า(ออก) data store ต้องมีองค์ประกอบเป็นเซตย่อยของ data store &bull; ต้องมี label</td></tr>
+<tr><td>Data store</td><td>เป็นตัวเชื่อม <b>ระหว่าง 2 process</b> &bull; ต้องมี label</td></tr>
+</table>
+<h3 class="subsec">Hierarchical consistency (L6 หน้า 31–32)</h3>
+<ul>
+<li>ต้องมี parent diagram เสมอ ยกเว้น context diagram</li>
+<li>Process ต้อง decompose เป็น diagram อื่น <b>หรือ</b> primitive process specification &bull; ต้องให้เลขสอดคล้องกับ parent</li>
+<li>Flow input/output ของ parent ต้องปรากฏใน child และ child ต้องปรากฏใน parent &bull; flow ที่แตกจาก parent flow ใน child ต้องรวมกันได้ตรงกับ parent</li>
+<li>Data flow ต้อง decompose เป็น record definition หรือ element definition &bull; Data store ต้อง decompose เป็น file definition หรือ record definition (ตรงกับ ERD ได้)</li>
+<li>Primitive process specification: input/output ต้องตรงกับ primitive process ใน DFD และใช้ identifier เดียวกัน</li>
+</ul>
+<div class="hand"><span class="tag h">ลายมือ</span> L7 หน้า 11 คุณจดว่า <b>PSPEC "ใช้ในการอธิบาย Process"</b> (PSPEC = อธิบายว่า process ข้างในทำอะไร)</div>
+
+<h2 class="sec">1.4 กฎของ data flow (Rules for Data Flows)</h2>
+<figure><div class="plate"><img src="img/L6_p27.jpg" alt="L6 หน้า 27: Rules for Data Flows (ซ้าย = ผิด, ขวา = แก้ให้ถูก)" loading="lazy"></div><figcaption>L6 หน้า 27: Rules for Data Flows (ซ้าย = ผิด, ขวา = แก้ให้ถูก)</figcaption></figure><figure><div class="plate"><img src="img/L6_p28.jpg" alt="L6 หน้า 28: Don't Break DFD Rules" loading="lazy"></div><figcaption>L6 หน้า 28: Don't Break DFD Rules</figcaption></figure>
+<ol>
+<li><b>Data flow ห้ามไม่มีชื่อ</b> (never go unnamed)</li>
+<li>ใน logical modeling ชื่อ flow ต้องอธิบาย <i>ข้อมูล</i> โดยไม่ระบุ <i>วิธีทำ/implementation</i></li>
+<li><b>ทุก data flow ต้องเริ่มและ/หรือจบที่ process</b> (ต้องมี process อยู่ปลายใดปลายหนึ่ง)</li>
+</ol>
+<p><b>Don't Break DFD Rules! (L7 หน้า 9, L6 หน้า 28):</b></p>
+<ol>
+<li>Data flow <b>ห้ามแตกเป็นสอง flow หรือมากกว่า</b> (ที่เป็นข้อมูลต่างกัน) จากเส้นเดียว</li>
+<li>Data flow ต้อง <b>ออกจากหรือเข้าสู่ process</b> (ห้าม entity &rarr; entity, entity &harr; store, store &rarr; store)</li>
+<li>Process ต้องมี <b>อย่างน้อย 1 input และ 1 output</b></li>
+</ol>
+<figure><div class="plate"><img src="img/L7_p09.jpg" alt="สไลด์ L7 หน้า 9: Don't Break DFD Rules (ภาพจริงของอาจารย์)" loading="lazy"></div><figcaption>สไลด์ L7 หน้า 9: Don't Break DFD Rules (ภาพจริงของอาจารย์)</figcaption></figure>
+
+<h2 class="sec">1.5 อธิบาย Process: PSPEC, Structured English, Decision table</h2>
+<figure><div class="plate"><img src="img/L7_p18.jpg" alt="L7 หน้า 18: ตัวอย่าง Decision table" loading="lazy"></div><figcaption>L7 หน้า 18: ตัวอย่าง Decision table</figcaption></figure>
+<div class="def"><b>Process Specification (PSPEC)</b> = คำอธิบายว่า process ทำอะไร ใช้ได้หลายรูปแบบ: <b>narrative, pseudocode (PDL), equations, tables, diagrams/charts</b> &bull; ใน design model หนึ่ง PSPEC แมปเป็น "component" หนึ่งหรือมากกว่าในซอฟต์แวร์ (DFD analysis model &rarr; design model)</div>
+<p>ตัวอย่างสไลด์: process <i>analyze triangle</i> รับ side dimensions ส่ง error message หรือ triangle type (equilateral / isosceles / scalene)</p>
+<div class="def"><b>Structured English</b> = ไวยากรณ์สำหรับระบุตรรกะของ process บนจุดแข็งของ structured programming + ภาษาอังกฤษ &bull; constructs: sequence, If-then-else (ตัดสินใจ 2 ทาง), Do the following based on / Case (หลายค่า), Repeat...until (วนอย่างน้อย 1 ครั้ง), Do while / For (วนได้ 0 ครั้ง) และอ้างอิง decision table ได้</div>
+<div class="def"><b>Policy</b> = ชุดกฎที่กำหนดว่าจะทำ process อย่างไร &bull; <b>Decision table</b> = ตารางระบุ <i>conditions</i> และ <i>actions</i> ที่สอดคล้อง ใช้ implement policy: แถว condition stubs / action stubs, คอลัมน์ rules (ตัวอย่างสไลด์: เช็คเงินสด Rule 1–4)</div>
+
+<h2 class="sec">1.6 Control flow (อ่านไว้ รอง)</h2>
+<figure><div class="plate"><img src="img/L7_p23.jpg" alt="L7 หน้า 23: Control flow เส้นประ (Divide)" loading="lazy"></div><figcaption>L7 หน้า 23: Control flow เส้นประ (Divide)</figcaption></figure><figure><div class="plate"><img src="img/L7_p24.jpg" alt="L7 หน้า 24: โน้ตลายมือของคุณ ตัวอย่าง log in" loading="lazy"></div><figcaption>L7 หน้า 24: โน้ตลายมือของคุณ ตัวอย่าง log in</figcaption></figure>
+<ul>
+<li>Control flow แทน <b>event</b> และ process ที่จัดการ event &bull; event = เงื่อนไข <b>Boolean</b> (จาก sensor ที่ซอฟต์แวร์อ่าน, interrupt, switch ที่ผู้ใช้กด, data condition)</li>
+<li>Control flow = <b>สัญญาณ</b>ที่สั่งงานหรือบอกว่าอะไรเกิดขึ้น เกิดที่ <b>จุดเวลาหนึ่ง</b> (discrete point in time)</li>
+<li>วาดเป็น <b>ลูกศรเส้นประ</b> ทิศทางตามลูกศร ชื่อ event เขียนข้างเส้น</li>
+<li>Control specification (CSPEC) ใช้ได้: state diagram (sequential spec) หรือ combinatorial spec = state transition table, decision tables, activation tables</li>
+</ul>
+<div class="hand"><span class="tag h">ลายมือ</span> L7 หน้า 24 คุณวาดตัวอย่าง <b>log in</b>: flow <code>username</code> เข้า process "log in", output <code>status</code>, และมีวง <code>check account</code> ส่ง control flow เส้นประ <code>OK</code> มาที่ log in &bull; ตัวอย่างสไลด์ (หน้า 23): <code>Test that Divisor is Not Zero</code> ส่ง <code>OK</code> เส้นประไปที่ <code>Divide</code> (Divisor/Dividend เข้า, Quotient/Remainder ออก) คุณจดคำไทยกำกับ ส่วน/ตัวตั้ง ตัวหาร ผลหาร เศษ</div>
+
+<label class="chk"><input type="checkbox" data-k="dfd"> อ่านหัวข้อ 1 (DFD) จบแล้ว</label>
+</section>
+
+<!-- ===================== 2. ERROR ===================== -->
+<section id="err" class="page" data-s="2" data-src="L6" data-time="~25 นาที">
+<h1 class="sheet">2. Error detection in DFD</h1>
+<p>อาจารย์บอกว่าส่วนนี้ <b>ให้วิเคราะห์ DFD แล้วตอบคำถาม</b> ใช้เช็คลิสต์ด้านล่างไล่ทีละเส้น ทีละกล่อง</p>
+
+<div class="card">
+<h2 class="sec" style="margin-top:0">เช็คลิสต์หา error (ไล่ตามลำดับ)</h2>
+<ol>
+<li><b>ทุก flow ต้องมี process อยู่ปลายหนึ่ง?</b> ห้าม entity&rarr;entity, entity&harr;data store, store&rarr;store</li>
+<li><b>ทุก process มี input อย่างน้อย 1 และ output อย่างน้อย 1?</b></li>
+<li><b>ทุก flow มีชื่อ?</b> ทุก icon มี label? (ชื่อซ้ำกันบนหลาย flow ที่เป็นข้อมูลต่างกันก็น่าสงสัย)</li>
+<li><b>flow ห้ามแตกเป็นหลายเส้น</b> ในแบบที่ข้อมูลต่างกัน</li>
+<li><b>เลข process</b>: context = 0, level 1 = 1,2,3, level 2 = 1.1, 1.2 ...; ไม่เกิน 7 process ต่อ diagram; process ต้องมีเลข</li>
+<li><b>Data store</b> ต้องเชื่อมระหว่าง process (ผ่าน process เท่านั้น) และมี label</li>
+<li><b>Balancing</b>: flow เข้า/ออกของ parent ต้องตรงกับ child; ชื่อ flow ที่ขยายลงระดับต้องรวมกันได้เท่า parent</li>
+<li><b>Logical modeling</b>: ชื่อ flow อธิบายข้อมูล ไม่ใช่วิธี implement</li>
+</ol>
+</div>
+
+<h2 class="sec">2.1 แบบฝึกจากสไลด์ "Correct/Incorrect?" (L6 หน้า 38–41)</h2>
+<p>หน้า 39–41 ตัดมาแค่ส่วนของแผนภาพ จึงตัดสินจากว่า flow เชื่อมถูกคู่หรือไม่ (ต้องมี process อยู่ปลายหนึ่ง) เฉลยด้านล่างเป็น <b>การวิเคราะห์ของผมจากกฎในสไลด์</b> ไม่ใช่เฉลยทางการของอาจารย์ (สไลด์ไม่มีเฉลย) ลองตอบเองก่อนกดเปิด</p>
+
+<div class="q">ข้อ 1 (หน้า 38): process 3 อัน</div><figure><div class="plate"><img src="img/L6_p38.jpg" alt="สไลด์ L6 หน้า 38: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 38: Correct/Incorrect?</figcaption></figure>
+<details><summary>เปิดเฉลย</summary>
+<ul><li>5.0 Create Invoice: <b>ถูก</b> (มี input 1 output 1)</li>
+<li>Apply Insurance Premium: <b>ผิด</b> มีแต่ output (ไม่มี input) และ <b>ไม่มีเลข process</b></li>
+<li>2.1 Calculate Gross Pay: <b>ผิด</b> มีแต่ input ไม่มี output</li></ul></details>
+
+<div class="q">ข้อ 2 (หน้า 39)</div><figure><div class="plate"><img src="img/L6_p39.jpg" alt="สไลด์ L6 หน้า 39: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 39: Correct/Incorrect?</figcaption></figure>
+<details><summary>เปิดเฉลย</summary>
+<ul><li>(a) <b>ผิด</b> store &rarr; store ไม่ผ่าน process</li><li>(b) <b>ถูก</b> process &rarr; store &rarr; process</li></ul></details>
+
+<div class="q">ข้อ 3 (หน้า 40)</div><figure><div class="plate"><img src="img/L6_p40.jpg" alt="สไลด์ L6 หน้า 40: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 40: Correct/Incorrect?</figcaption></figure>
+<details><summary>เปิดเฉลย</summary>
+<ul><li>(a) <b>ถูก</b>: store &rarr; process คือการดึงข้อมูล (retrieval) โจทย์ชุดนี้ถามเรื่อง flow เชื่อมถูกคู่ไหม ส่วน 2.0 ยังไม่เห็น output เพราะสไลด์ตัดมาแค่ส่วนเดียวของแผนภาพ</li><li>(b) ถูก: process อ่านและอัปเดต store ได้ทั้งสองทิศ (3.0 มีทั้ง input และ output)</li></ul></details>
+
+<div class="q">ข้อ 4 (หน้า 41)</div><figure><div class="plate"><img src="img/L6_p41.jpg" alt="สไลด์ L6 หน้า 41: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 41: Correct/Incorrect?</figcaption></figure>
+<details><summary>เปิดเฉลย</summary>
+<ul><li>(a) <b>ผิด</b> entity &rarr; entity &bull; (b) <b>ถูก</b> &bull; (c) <b>ผิด</b> entity &rarr; store ต้องผ่าน process</li></ul></details>
+
+<h2 class="sec">2.2 "List the Errors in This DFD" (L6 หน้า 42)</h2>
+<div class="hunt" id="hunt">
+<div class="hunt-ui"><p><b id="hc">พบ 0 / 3</b> ลองหาก่อนเปิดเฉลย: กดบนภาพตรงจุดที่คิดว่าผิดกฎ ผมแน่ใจ 3 จุด <button class="btn alt" id="hall" type="button">เฉลยทั้งหมด</button></p><p class="pick" id="hpick">หรือเลือกจากรายการ: <button type="button" class="pk" data-s="0">DF1</button><button type="button" class="pk" data-s="-1">DF2 (E1 &rarr; 1.0)</button><button type="button" class="pk" data-s="-1">DF2 (E1 &rarr; 2.0)</button><button type="button" class="pk" data-s="-1">DF3</button><button type="button" class="pk" data-s="-1">DF4</button><button type="button" class="pk" data-s="1">DF5</button><button type="button" class="pk" data-s="-1">DF6</button><button type="button" class="pk" data-s="-1">P1 (2.0)</button><button type="button" class="pk" data-s="2">P2 (1.0)</button></p><p id="hmsg" aria-live="polite" class="hmsg"></p><ul id="hl"></ul></div>
+<figure><div class="plate" id="hplate"><img src="img/L6_p42.jpg" alt="สไลด์ L6 หน้า 42: List the Errors in This DFD" loading="lazy"><svg class="marks" viewBox="0 0 842 595" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption>สไลด์ L6 หน้า 42: List the Errors in This DFD (โจทย์ของอาจารย์)</figcaption></figure>
+</div>
+<details><summary>เปิดเฉลย (วิเคราะห์ของผม ตรวจเทียบกฎในสไลด์)</summary>
+<table>
+<tr><th>#</th><th>ข้อผิดพลาด</th><th>กฎที่ละเมิด</th></tr>
+<tr><td>1</td><td><b>DF1</b>: E1 &rarr; E1 (entity ส่งข้อมูลตรงถึง entity)</td><td>flow ต้องเริ่ม/จบที่ process</td></tr>
+<tr><td>2</td><td><b>DF5</b>: E1 &rarr; DS1 (entity เข้า data store ตรงๆ)</td><td>flow ต้องผ่าน process; data store เป็นตัวเชื่อมระหว่าง process</td></tr>
+<tr><td>3</td><td><b>P2 (1.0)</b> มี input (DF2, DF3) แต่ <b>ไม่มี output</b></td><td>process ต้องมีอย่างน้อย 1 input และ 1 output</td></tr>
+<tr><td>4</td><td><b>DF2</b> ใช้ชื่อซ้ำ 2 เส้น (E1 &rarr; P2 และ E1 &rarr; P1) และ E1 มี 2 กล่อง ชื่อซ้ำ</td><td>flow แต่ละเส้นควรมีชื่อสื่อความหมายและไม่กำกวม (สังเกตไว้ ไม่ใช่กฎตายตัว)</td></tr>
+<tr><td>5</td><td>เลข process กลับด้าน/ชื่อ: P2 เป็น 1.0, P1 เป็น 2.0 และ DS1 ไม่มีเลข D1 ชื่อเป็น P1/P2 ไม่สื่อความหมาย</td><td>ทุก icon ต้อง label อย่างมีความหมาย (logical naming)</td></tr>
+</table>
+<p>ที่ <b>ถูก</b>: DF3 (P1&rarr;P2), DF4 (P1&rarr;E1), DF6 (DS1&rarr;P1), DF2 (E1&rarr;P1) เพราะมี process อยู่ปลายหนึ่ง</p>
+<div class="trap"><span class="tag t">ระวัง</span> ข้อ 4–5 อาจารย์อาจไม่นับเป็นข้อผิดหลัก ข้อ 1–3 คือที่แน่ใจที่สุด ถ้าข้อสอบถามจำนวน error ให้ตอบตามกฎที่เรียนในสไลด์ และถามอาจารย์ถ้าเกณฑ์ไม่ชัด</div>
+</details>
+
+<label class="chk"><input type="checkbox" data-k="err"> อ่านหัวข้อ 2 (Error detection) จบแล้ว</label>
+</section>
+
+<!-- ===================== 3. GIT ===================== -->
+<section id="git" class="page" data-s="3" data-src="L11 · cheat sheet" data-time="~25 นาที">
+<h1 class="sheet">3. Git functions</h1>
+
+<h2 class="sec">3.1 Configuration management และ Version control</h2>
+<div class="def"><b>Software Configuration Management (CM)</b> = วินัยและเทคนิคในการ <b>เริ่มต้น ประเมิน และควบคุมการเปลี่ยนแปลง</b> ของผลิตภัณฑ์ซอฟต์แวร์ระหว่างและหลังกระบวนการพัฒนา &bull; มาตรฐาน: IEEE 828 (CM plans), IEEE 1042 (guide to CM)</div>
+<ul>
+<li><b>Configuration item</b> = สิ่งที่เปลี่ยนแปลงได้และต้องติดตาม: โค้ด เอกสาร requirement/analysis/design คู่มือ ตัวขับทดสอบ การตั้งค่าระบบ (เช่นเวอร์ชันคอมไพเลอร์) แม้ hardware config</li>
+<li><b>Version identification</b> 2 แบบ: (1) <i>version numbering</i> เช่น V1, V1.1, V1.2, V2.1 (ชื่อไม่สื่อความหมาย) (2) <i>attribute-based</i> เช่น วันที่ ผู้สร้าง ภาษา ลูกค้า สถานะ</li>
+</ul>
+<div class="def"><b>Version Control System (VCS)</b> เป็นส่วนหนึ่งของ CM มี 3 วัตถุประสงค์: <b>(1) กู้คืน configuration เก่า (2) ประสานการเปลี่ยนแปลง (3) ระบุเวอร์ชันและ component</b></div>
+
+<h2 class="sec">3.2 Git = distributed VCS</h2>
+<figure><div class="plate"><img src="img/L11_p12.jpg" alt="L11 หน้า 12: CVS แบบรวมศูนย์ (checkin/checkout กับ repository กลาง)" loading="lazy"></div><figcaption>L11 หน้า 12: CVS แบบรวมศูนย์ (checkin/checkout กับ repository กลาง)</figcaption></figure>
+<ul>
+<li>ฟรี open-source จัดการโปรเจกต์ตั้งแต่เล็กจนใหญ่ เร็ว มี local branching, staging area, หลาย workflow (เหนือ Subversion/CVS)</li>
+<li>ทุกอย่างเป็น <b>local</b> ทำงาน offline ได้ ทุก clone เป็น backup มี history ครบ (ต่างจาก CVS ที่มี repository กลางและ checkin/checkout)</li>
+</ul>
+<h2 class="sec">3.3 Staging area และวงจรสถานะไฟล์</h2>
+<div class="def">Git มี <b>staging area (index)</b> = ที่รวมการเปลี่ยนแปลงที่ "จะถูก commit" ใช้เตรียมก่อน commit (VCS อื่นไม่มี)</div>
+<figure><div class="plate"><img src="img/L11_p18.jpg" alt="สไลด์ L11 หน้า 18: File Status Lifecycle (untracked / staged / unmodified / modified)" loading="lazy"></div><figcaption>สไลด์ L11 หน้า 18: File Status Lifecycle (untracked / staged / unmodified / modified)</figcaption></figure>
+<p>ลำดับ: <b>working directory &rarr; (git add) &rarr; staging area &rarr; (git commit) &rarr; local repository &rarr; (git push) &rarr; remote repository</b></p>
+
+<h2 class="sec">3.4 คำสั่งหลักจากสไลด์</h2>
+<table>
+<tr><th>คำสั่ง</th><th>ทำอะไร (ตามสไลด์)</th></tr>
+<tr><td><code>git add &lt;file&gt;</code></td><td>เพิ่มการเปลี่ยนแปลงที่เลือกจาก working directory เข้า <b>staging area</b> ระบุว่า commit ถัดไปจะมีอะไร; ตรวจดูได้ก่อน commit</td></tr>
+<tr><td><code>git commit -m "message"</code></td><td>เพิ่ม staged changes เข้า <b>local repository</b> สร้างเวอร์ชันใหม่ (commit) ข้อความอธิบายสิ่งที่เปลี่ยน</td></tr>
+<tr><td><code>git pull</code></td><td>ดึงการเปลี่ยนแปลงจาก <b>remote</b> มาที่ local = <b>fetch + merge</b> เข้า branch ปัจจุบัน; merge ส่วนมากอัตโนมัติ conflict เกิดได้แต่แก้ไม่ยาก</td></tr>
+<tr><td><code>git push</code></td><td>ส่ง <b>local commits</b> ไป remote ให้คนอื่นเห็น; <b>อาจถูกปฏิเสธ</b>ถ้า remote มีการเปลี่ยนแปลงที่ local ยังไม่มี (ต้อง pull ก่อน)</td></tr>
+</table>
+<div class="trap"><span class="tag t">กับดัก</span> add &ne; commit &bull; add = เข้า staging, commit = เข้า local repo, push = เข้า remote &bull; pull = fetch + merge (fetch อย่างเดียวไม่ merge)</div>
+
+<h2 class="sec">3.5 คำสั่งจาก cheat sheet (GitHub Education)</h2>
+<p>ใบประกาศบอกห้ามนำ cheat sheet เข้าห้องสอบ แต่คำสั่งเหล่านี้อยู่ในชุดที่อาจารย์แจก จึงควรจำให้ได้ แบ่งเป็นกลุ่ม</p>
+<div class="grid">
+<div class="card"><b>Setup &amp; init</b>
+<ul><li><code>git config --global user.name "[ชื่อ]"</code> ตั้งชื่อผู้ทำ commit</li><li><code>git config --global user.email "[อีเมล]"</code></li><li><code>git init</code> เปลี่ยนโฟลเดอร์เป็น repo</li><li><code>git clone [url]</code> ดึง repo ทั้งก้อนจาก URL</li></ul></div>
+<div class="card"><b>Stage &amp; snapshot</b>
+<ul><li><code>git status</code> ดูไฟล์ที่แก้/staged</li><li><code>git add [file]</code> stage</li><li><code>git reset [file]</code> เอาออกจาก stage (งานยังอยู่)</li><li><code>git diff</code> ดูที่แก้แต่ยังไม่ stage</li><li><code>git diff --staged</code> ดูที่ stage แล้วยังไม่ commit</li><li><code>git commit -m "..."</code></li></ul></div>
+<div class="card"><b>Branch &amp; merge</b>
+<ul><li><code>git branch</code> ลิสต์ branch (มี * ที่ branch ปัจจุบัน)</li><li><code>git branch [name]</code> สร้าง branch ใหม่ที่ commit ปัจจุบัน</li><li><code>git checkout</code> สลับ branch</li><li><code>git merge [branch]</code> รวมประวัติของ branch ที่ระบุเข้า branch ปัจจุบัน</li><li><code>git log</code> ดูประวัติ commit</li></ul></div>
+<div class="card"><b>Share &amp; update</b>
+<ul><li><code>git remote add [alias] [url]</code> ตั้งชื่อย่อให้ URL</li><li><code>git fetch [alias]</code> ดึงทุก branch จาก remote (ไม่ merge)</li><li><code>git merge [alias]/[branch]</code></li><li><code>git push [alias] [branch]</code></li><li><code>git pull</code> = fetch + merge</li></ul></div>
+<div class="card"><b>Track path changes</b>
+<ul><li><code>git rm [file]</code> ลบไฟล์และ stage การลบ</li><li><code>git mv [old] [new]</code> ย้าย/เปลี่ยนชื่อและ stage</li><li><code>git log --stat -M</code> ดู log พร้อมไฟล์ที่ย้าย</li></ul></div>
+<div class="card"><b>Stash / Rewrite / Inspect / Ignore</b>
+<ul><li><code>git stash</code> เก็บงานชั่วคราว &bull; <code>stash list</code> &bull; <code>stash pop</code> เอากลับ &bull; <code>stash drop</code> ทิ้ง</li><li><code>git rebase [branch]</code> &bull; <code>git reset --hard [commit]</code> ล้าง stage และเขียน working tree ใหม่ (<b>ระวัง งานหาย</b>)</li><li><code>git log branchB..branchA</code> &bull; <code>git diff branchB...branchA</code> &bull; <code>git show [SHA]</code></li><li>ไฟล์ <code>.gitignore</code> กันไม่ให้ stage/commit ไฟล์ที่ไม่ต้องการ</li></ul></div>
+</div>
+
+<h2 class="sec">3.6 Branching</h2>
+<ul>
+<li><b>master</b> = branch เริ่มต้น เป็น production code พร้อม deploy ต้อง <b>stable</b>: ห้าม push อะไรที่ไม่ผ่านการทดสอบหรือทำ build พัง</li>
+<li><b>ควรสร้าง branch ใหม่เมื่อ</b>: เพิ่ม feature ใหม่ / ทำ release ใหม่ / ทดลองการเปลี่ยนแปลง / แก้ bug</li>
+<li>Branching เป็นของชั่วคราว ได้รับการสนับสนุน; merge ส่วนมากอัตโนมัติ แต่ <b>conflict</b> ตอน merge เป็นปัญหา ควรมี workflow ที่กำหนดไว้</li>
+</ul>
+<h3 class="subsec">Git branching model (nvie)</h3>
+<figure><div class="plate"><img src="img/L11_p28.jpg" alt="L11 หน้า 28: master กับ develop" loading="lazy"></div><figcaption>L11 หน้า 28: master กับ develop</figcaption></figure><figure><div class="plate"><img src="img/L11_p30.jpg" alt="L11 หน้า 30: Feature branches" loading="lazy"></div><figcaption>L11 หน้า 30: Feature branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p31.jpg" alt="L11 หน้า 31: Release branches" loading="lazy"></div><figcaption>L11 หน้า 31: Release branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p32.jpg" alt="L11 หน้า 32: Hotfix branches" loading="lazy"></div><figcaption>L11 หน้า 32: Hotfix branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p33.jpg" alt="L11 หน้า 33: The Whole Picture" loading="lazy"></div><figcaption>L11 หน้า 33: The Whole Picture</figcaption></figure>
+<table>
+<tr><th>Branch</th><th>บทบาท</th><th>แตกจาก &rarr; รวมกลับ</th></tr>
+<tr><td><b>master</b></td><td>source code สะท้อนสถานะ <b>production-ready</b> เสมอ (มี tag เช่น 0.1, 1.0, 1.2.1)</td><td>main</td></tr>
+<tr><td><b>develop</b></td><td>สะท้อน <b>งานล่าสุดที่ส่งมอบแล้วสำหรับ release ถัดไป</b></td><td>main</td></tr>
+<tr><td><b>Feature</b> (topic)</td><td>พัฒนา feature ใหม่สำหรับ release ที่จะมาหรืออนาคตไกล</td><td>develop &rarr; develop</td></tr>
+<tr><td><b>Release</b></td><td>เตรียม production release ใหม่ (แก้บั๊กเล็ก) ทำให้ develop ว่างรับ feature ของ release ถัดไป</td><td>develop &rarr; master และ develop</td></tr>
+<tr><td><b>Hotfix</b></td><td>แก้บั๊กวิกฤตของ production ทันที แตกจาก <b>tag บน master</b> (เช่น 1.2 &rarr; แก้เป็น 1.2.1)</td><td>master &rarr; master และ develop</td></tr>
+</table>
+<div class="trap"><span class="tag t">ใช้ตอบ</span> สไลด์บอกชัด: hotfix แตกจาก <b>tag บน master</b> &bull; release แตกจาก develop &bull; feature แตกจาก develop &bull; main branches = master + develop เท่านั้น</div>
+
+<label class="chk"><input type="checkbox" data-k="git"> อ่านหัวข้อ 3 (Git) จบแล้ว</label>
+</section>
+
+<!-- ===================== 4. UNIT TEST ===================== -->
+<section id="unit" class="page" data-s="4" data-src="L12 · L13" data-time="~35 นาที">
+<h1 class="sheet">4. Unit test (+ JUnit + แบบฝึกหัด 5–8)</h1>
+
+<h2 class="sec">4.1 Testing และระดับของการทดสอบ</h2>
+<figure><div class="plate"><img src="img/L13_p16.jpg" alt="L13 หน้า 16: เทียบ Unit / Integration / System test" loading="lazy"></div><figcaption>L13 หน้า 16: เทียบ Unit / Integration / System test</figcaption></figure><figure><div class="plate"><img src="img/L13_p19.jpg" alt="L13 หน้า 19: Validation and Verification Activities" loading="lazy"></div><figcaption>L13 หน้า 19: Validation and Verification Activities</figcaption></figure>
+<div class="def"><b>Testing</b> = กิจกรรมหาว่าโค้ด (method, class, program) ให้พฤติกรรมตามที่ตั้งใจหรือไม่ / กระบวนการประเมินซอฟต์แวร์ด้านความถูกต้อง ความครบถ้วน คุณภาพ &bull; พบบั๊กเร็ว ลดต้นทุน เพิ่มความเชื่อมั่น</div>
+<table>
+<tr><th></th><th>Unit / Module test</th><th>Integration test</th><th>System test</th></tr>
+<tr><td>ทดสอบอะไร</td><td>หน่วยเล็กสุดของ source code (function/class)</td><td>กลุ่มของ module ที่รวมกัน</td><td>ระบบที่ integrate สมบูรณ์</td></tr>
+<tr><td>ต้นทุน/ความถี่</td><td>เล็กสุด เร็วสุด ถูกสุด ทำบ่อย</td><td>ปานกลาง ทำไม่บ่อยนัก</td><td>แพงสุด ทำนานๆ ครั้ง</td></tr>
+<tr><td>Specification</td><td>Module interface</td><td>Interface specs, module breakdown</td><td>Requirements specification</td></tr>
+<tr><td>Visible structure</td><td>Coding details</td><td>Modular structure (architecture)</td><td>— none —</td></tr>
+<tr><td>Scaffolding</td><td>Some</td><td><b>Often extensive</b></td><td>Some</td></tr>
+<tr><td>หา fault ที่</td><td>Modules</td><td>Interactions, compatibility</td><td>System functionality</td></tr>
+</table>
+<ul>
+<li><b>Integration test</b>: ทดสอบการทำงานร่วมกันระหว่างหน่วย หา issue ที่ interface, data flow, dependency (เช่นฟังก์ชันที่ต้องพึ่งการเชื่อมต่อฐานข้อมูล) เป็นสะพานระหว่าง unit กับ system</li>
+<li><b>Unit vs Integration</b>: unit test เป็นรากฐานที่ขาดไม่ได้ (controllability/visibility สูงสุด); integration ชดเชย unit ที่ไม่พอไม่ได้; ถ้า integration เจอ <i>module fault</i> = unit test ไม่พอ; ถ้า fault อยู่ที่ interface ระหว่าง module ที่เขียนถูก = ปัญหาอยู่ที่การแบ่ง module/interface spec</li>
+<li><b>System test</b>: ตรวจระบบทั้งหมดตรงกับ requirement; แบบ Functional / Non-functional (performance, usability, reliability) / Security</li>
+<li><b>Regression testing</b>: ยืนยันว่าการแก้โค้ดล่าสุดไม่ทำให้ของเดิมพัง ใช้หลัง bug fix, เพิ่ม feature/enhancement, ปรับ performance, ระหว่าง maintenance ประจำ</li>
+<li><b>Verification vs Validation</b> (V-model, Naik&amp;Tripathy): verification ฝั่งซ้ายล้อกับ development, validation ไล่ Unit &rarr; Integration &rarr; System &rarr; Acceptance</li>
+</ul>
+
+<h2 class="sec">4.2 คุณสมบัติของ unit test ที่ดี</h2>
+<ol>
+<li>แต่ละ test โฟกัส <b>1 function/method</b> ไม่พึ่งส่วนอื่น</li>
+<li>รัน <b>เร็ว</b> เพื่อทดสอบต่อเนื่องระหว่างพัฒนา</li>
+<li>รัน <b>อัตโนมัติ</b>ได้ในสาย CI/CD</li>
+<li>ได้ผล <b>เหมือนเดิมทุกครั้ง</b> ไม่ขึ้นกับปัจจัยภายนอก (deterministic)</li>
+</ol>
+<p>Best practices: โค้ด modular/แยกส่วน &bull; ใส่ใน CI/CD &bull; จำลอง dependency (simulate/mock) &bull; ใช้ coverage เพื่อเข้าใจว่าทดสอบไปแค่ไหน เน้น <i>meaningful coverage</i> ไม่ต้อง 100%</p>
+
+<h2 class="sec">4.3 JUnit</h2>
+<figure><div class="plate"><img src="img/L13_p12.jpg" alt="L13 หน้า 12: Assertion methods ใน JUnit" loading="lazy"></div><figcaption>L13 หน้า 12: Assertion methods ใน JUnit</figcaption></figure><figure><div class="plate"><img src="img/L13_p14.jpg" alt="L13 หน้า 14: ตัวอย่าง JUnit (Student / StudentTest)" loading="lazy"></div><figcaption>L13 หน้า 14: ตัวอย่าง JUnit (Student / StudentTest)</figcaption></figure>
+<ul>
+<li>เป็น unit testing framework ของ Java มาตรฐาน TDD (พัฒนาช่วงกลางทศวรรษ 90) ผูกเป็น <b>JAR ตอน compile</b>; ใช้กับ Eclipse, Ant, Maven</li>
+<li>ให้ <b>Annotation</b> ระบุ test method + <b>assertion methods</b> ตรวจผลที่คาดหวัง + <b>test runner</b> รันเทส</li>
+<li><b>JUnit checklist</b>: Initialize &rarr; Write test cases &rarr; Write a test suite &rarr; Execute test suite</li>
+<li><code>@Test</code> = บอก JUnit ว่า method นี้รันเป็น test ได้ &bull; lifecycle ตามสไลด์: <code>@BeforeClass</code> &rarr; (ต่อแต่ละ test: <code>@Before</code> &rarr; <code>@Test</code> &rarr; <code>@After</code>) &rarr; <code>@AfterClass</code></li>
+</ul>
+<table>
+<tr><th>Assertion</th><th>ตรวจอะไร</th></tr>
+<tr><td><code>assertEquals(expected, actual)</code></td><td>สอง primitive/object เท่ากัน</td></tr>
+<tr><td><code>assertTrue(cond)</code> / <code>assertFalse(cond)</code></td><td>เงื่อนไขเป็นจริง / เท็จ</td></tr>
+<tr><td><code>assertNotNull(obj)</code> / <code>assertNull(obj)</code></td><td>object ไม่เป็น null / เป็น null</td></tr>
+<tr><td><code>assertSame(o1, o2)</code> / <code>assertNotSame</code></td><td>อ้างอิง object ตัวเดียวกัน / คนละตัว</td></tr>
+<tr><td><code>assertArrayEquals(expectedArray, resultArray)</code></td><td>อาร์เรย์เท่ากัน</td></tr>
+</table>
+<p>ตัวอย่างสไลด์ (class <code>Student</code> มี <code>getDisplayName()</code> = firstName + " " + lastName):</p>
+<pre>@Test
+public void testGetDisplayNameSpace() {
+    Student stu = new Student("Morakot","Choetkiertikul","99999999",2010);
+    String displayName = stu.getDisplayName();
+    assertEquals("Morakot Choetkiertikul", displayName);   // ผ่าน: มีเว้นวรรค
+}
+@Test
+public void testGetDisplayNameNospace() {
+    ...
+    assertEquals("MorakotChoetkiertikul", displayName);    // ไม่ผ่าน: ขาดเว้นวรรค
+}</pre>
+<div class="trap"><span class="tag t">กับดัก</span> <code>assertEquals(expected, actual)</code> ลำดับ expected มาก่อน actual &bull; test ที่ 2 ในตัวอย่างสไลด์ <b>fail</b> เพราะ method คืนค่ามีเว้นวรรค</div>
+
+<h2 class="sec">4.4 เทคนิคออกแบบ test case (ท้าย L13: แบบฝึกหัด 5–8)</h2>
+<div class="def"><b>Black-box</b>: Equivalence Class Partitioning (ECP) และ Boundary Value Analysis (BVA) &bull; <b>White-box</b>: Path analysis / Cyclomatic complexity</div>
+<h3 class="subsec">BVA (Exercise 5: ตั๋วอุทยาน ตามอายุ)</h3>
+<p>กฎ: อายุ &lt;12 ฟรี &bull; 18–60 = 200 บาท &bull; &lt;18 และ &gt;60 = 100 บาท (ตามสไลด์) &mdash; เฉลยในสไลด์:</p>
+<table>
+<tr><th>Class</th><th>All cases</th><th>Reduced</th><th>Expected</th></tr>
+<tr><td>Invalid (&lt;0)</td><td>-1, 0</td><td>-1</td><td>Error: Invalid Age</td></tr>
+<tr><td>0–11</td><td>-1,0,1, 10,11,12</td><td>0, 11</td><td>Free</td></tr>
+<tr><td>12–17</td><td>11,12,13, 16,17,18</td><td>12, 17</td><td>100</td></tr>
+<tr><td>18–60</td><td>17,18,19, 59,60,61</td><td>18, 60</td><td>200</td></tr>
+<tr><td>&gt;61</td><td>60, 61</td><td>61</td><td>100</td></tr>
+</table>
+<p><b>หลักคิด BVA:</b> ทดสอบ <b>ค่าที่ขอบ</b> ของแต่ละช่วง: ค่าขอบ, ต่ำกว่าขอบ 1, สูงกว่าขอบ 1 แล้วลดเหลือค่าที่อยู่ในคลาส</p>
+<h3 class="subsec">ECP (Exercise 6: ส่วนลดสมาชิก) ใช้ 1 ตัวแทนต่อ 1 คลาส</h3>
+<table>
+<tr><th>Class</th><th>Representative</th><th>Expected</th></tr>
+<tr><td>&lt;= 0</td><td>-5</td><td>Invalid input</td></tr>
+<tr><td>1–500</td><td>450</td><td>No discount</td></tr>
+<tr><td>501–999</td><td>658</td><td>5% discount</td></tr>
+<tr><td>1,000–4,999</td><td>2,599</td><td>10% discount</td></tr>
+<tr><td>5,000–100,000</td><td>45,100</td><td>20% discount</td></tr>
+<tr><td>&gt;100,000</td><td>111,111</td><td>Invalid input</td></tr>
+</table>
+<h3 class="subsec">BVA ของโจทย์ส่วนลดเดียวกัน (Exercise 7) ตัวที่ reduced</h3>
+<p>&le;0: <code>-1</code> &bull; 1–500: <code>1, 500</code> &bull; 501–999: <code>501, 999</code> &bull; 1,000–4,999: <code>1000, 4999</code> &bull; 5,000–100,000: <code>5000, 100000</code> &bull; &gt;100,000: <code>100001</code></p>
+
+<h3 class="subsec">White-box: Path analysis และ Cyclomatic complexity (Exercise 8)</h3>
+<figure><div class="plate"><img src="img/L12_p33.jpg" alt="L12 หน้า 33: Path analysis" loading="lazy"></div><figcaption>L12 หน้า 33: Path analysis</figcaption></figure><figure><div class="plate"><img src="img/L12_p34.jpg" alt="L12 หน้า 34: ตัวอย่าง CASE structure" loading="lazy"></div><figcaption>L12 หน้า 34: ตัวอย่าง CASE structure</figcaption></figure><figure><div class="plate"><img src="img/L12_p35.jpg" alt="L12 หน้า 35: ตัวอย่าง Loop" loading="lazy"></div><figcaption>L12 หน้า 35: ตัวอย่าง Loop</figcaption></figure><figure><div class="plate"><img src="img/L12_p36.jpg" alt="L12 หน้า 36: Linearly Independent Set of Paths" loading="lazy"></div><figcaption>L12 หน้า 36: Linearly Independent Set of Paths</figcaption></figure><figure><div class="plate"><img src="img/L12_p37.jpg" alt="L12 หน้า 37: จำนวน path ทั้งหมดและ linearly independent" loading="lazy"></div><figcaption>L12 หน้า 37: จำนวน path ทั้งหมดและ linearly independent</figcaption></figure><figure><div class="plate"><img src="img/L12_p38.jpg" alt="L12 หน้า 38: โน้ตลายมือของคุณ (FindLar_3)" loading="lazy"></div><figcaption>L12 หน้า 38: โน้ตลายมือของคุณ (FindLar_3)</figcaption></figure><figure><div class="plate"><img src="img/L13_p40.jpg" alt="L13 หน้า 40: โน้ตลายมือของคุณ (Exercise 8)" loading="lazy"></div><figcaption>L13 หน้า 40: โน้ตลายมือของคุณ (Exercise 8)</figcaption></figure>
+<div class="def">ขั้นตอน Linearly Independent Set of Paths: <b>(1) คำนวณจำนวน independent path = จำนวน decision node + 1 (Cyclomatic number)</b> (2) ลิสต์ path ที่เป็นไปได้ทั้งหมด (3) เลือกชุด path ที่ <b>linearly independent</b> = แต่ละ path เพิ่ม <b>edge ใหม่อย่างน้อย 1 เส้น</b> ที่ path ก่อนหน้าไม่มี</div>
+<ul>
+<li>ถ้ามี 3 decision ต่อกัน มี path ที่เป็นไปได้ทั้งหมด 2<sup>3</sup> = 8 (logical paths) แต่ linearly independent มีแค่ 3+1 = <b>4</b></li>
+<li>บันทึก path ได้ 2 แบบ: ชื่อโหนด (S1-C1-S3) หรือ <b>segments</b> (1,4) แล้วทำ <b>ตาราง LISP</b> (path &times; segment) ติ๊กว่า path ไหนผ่าน segment ไหน</li>
+</ul>
+<p>โค้ดของ Exercise 8 (Zoo ticket) ตามสไลด์เฉลย: <code>if 0&lt;age&lt;=12 return 50; elif 13&lt;=age&lt;=20 return 100; elif 21&lt;=age&lt;=60 return 150; elif age&gt;60 return 100</code></p>
+<div class="hand"><span class="tag h">ลายมือ</span> L13 หน้า 40 คุณทำเฉลย: flowchart S1, C1, C2, C3 (C4 ถูกกั้นกล่องเทาเขียนว่า <i>"ไม่ควรมี"</i> เพราะ elif สุดท้ายคือ else) &bull; <b>CC = decision node + 1 = 3+1 = 4</b> (คุณขีดฆ่า 4+1=5 แล้วเขียนว่า "เหลือ 3 condition") &bull; All paths: Path1 S1-C1-S2 (segments 1,2) &bull; Path2 S1-C1-C2-S3 (1,3,4) &bull; Path3 S1-C1-C2-C3-S4 (1,3,5,6) &bull; Path4 ไป C3 แล้วออกทาง No (1,3,5,7) &bull; แล้วทำตาราง LISP ติ๊ก segment 1–7 ต่อ Path 1–4</div>
+<div class="hand"><span class="tag h">ลายมือ</span> L12 หน้า 38 (แบบฝึกหา largest ของ 3 ตัวเลข <code>FindLar_3</code>) CC = decision node + 1 = 3+1 = 4 &bull; Path1 S1-C1-C2-S2 (1,2,3) &bull; Path2 S1-C1-C2-S3 (1,2,4) &bull; Path3 S1-C1-C3-S4 (1,5,6) &bull; Path4 S1-C1-C3-S3 (1,5,7)</div>
+
+<h2 class="sec">4.5 ที่เหลือใน L12/L13 ที่ควรรู้ผ่านๆ</h2>
+<ul>
+<li><b>QA</b> = กิจกรรมทั้งหมดที่วัดและปรับปรุงคุณภาพของ product <i>และ process</i> &bull; <b>QC</b> = กิจกรรมตรวจสอบคุณภาพ product และหา fault</li>
+<li>Error detection techniques: code review (inspection, peer review, walkthrough), testing, static analysis, dynamic analysis, debugging, formal methods</li>
+<li>Testing types: unit, integration, system, <b>acceptance</b> (ตรง requirement ผู้ใช้/ธุรกิจ), regression</li>
+<li>Usability = วัดว่าใช้ง่ายและมีประสิทธิภาพ &bull; ทดสอบแบบ task-based, A/B, survey &bull; วัดผลเชิงปริมาณ เช่นเวลาทำงาน, อัตรา error</li>
+<li>When to stop testing: รัน test ที่วางแผนครบ + แก้ปัญหาที่พบหมด หรือไม่พบ error เพิ่ม / defect seeding</li>
+</ul>
+
+<label class="chk"><input type="checkbox" data-k="unit"> อ่านหัวข้อ 4 (Unit test) จบแล้ว</label>
+</section>
+
+<!-- ===================== 5. QUIZ ===================== -->
+<section id="quiz" class="page">
+<div id="qroot"></div>
+</section>
+
+<section id="src" class="page">
+<h1 class="sheet">แหล่งที่มาและข้อจำกัด</h1>
+<ul>
+<li>สไลด์อาจารย์: L6, L7 (DFD), L11 (VCS/Git), L12, L13 (Testing) + Git cheat sheet (GitHub Education) + โน้ต Goodnotes ที่เขียนบนสไลด์</li>
+<li><b>ไม่ใช่เฉลยทางการ</b>: เฉลยแบบฝึก Correct/Incorrect และ "List the Errors" เป็นการวิเคราะห์จากกฎในสไลด์ สไลด์ไม่ได้ให้เฉลย</li>
+<li>โน้ตลายมือบางส่วนอ่านตัวเลข segment ไม่ชัด (Path 4 ของ Exercise 8) ให้เทียบกับของจริงอีกครั้ง</li>
+<li>ใบประกาศมีหัวข้อ "ITDS262" ขณะไฟล์เรียนเป็น ITDS261 ผมใช้ตามไฟล์เนื้อหา</li>
+</ul>
+</section>
+</main>
+<footer style="text-align:center;color:var(--muted);font-size:14px;padding:0 0 30px"><a href="#src">แหล่งที่มาและข้อจำกัด</a> &middot; สร้างจากสไลด์ L6, L7, L11, L12, L13</footer>
+
+<dialog id="lb"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><div class="cap"><span id="lbc"></span><button class="btn alt" id="lbx" type="button">ปิด (Esc)</button></div></dialog>
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+<script>
+(function(){
+  var root=document.documentElement;root.classList.add("js");
+  var store=null;try{store=window.localStorage}catch(e){}
+  function get(k){try{return store?store.getItem(k):null}catch(e){return null}}
+  function set(k,v){try{if(store)store.setItem(k,v)}catch(e){}}
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  root.setAttribute("data-theme",get("q2-theme")||"dark");
+  document.getElementById("themeBtn").addEventListener("click",function(){
+    var n=root.getAttribute("data-theme")==="dark"?"light":"dark";
+    root.setAttribute("data-theme",n);set("q2-theme",n);
+  });
+
+  var order=["home","dfd","err","git","unit","quiz"];
+  var names={home:"Home",dfd:"S1 DFD",err:"S2 หา Error",git:"S3 Git",unit:"S4 Unit test",quiz:"ข้อสอบ"};
+  var long={dfd:"S1 DFD: นิยามและกฎ",err:"S2 หา Error ใน DFD",git:"S3 Git",unit:"S4 Unit test"};
+  var topics=["dfd","err","git","unit"];
+  function done(k){return get("q2-"+k)==="1"}
+
+  document.querySelectorAll(".page[data-s]").forEach(function(pg){
+    var tb=document.createElement("div");tb.className="tb";
+    tb.innerHTML='<div><span>SHEET</span><b>S'+pg.dataset.s+' / 4</b></div><div><span>SOURCE</span><b>'+pg.dataset.src+'</b></div><div><span>TIME</span><b>'+pg.dataset.time+'</b></div><div class="st"><span>STATUS</span><b>ยังไม่จบ</b></div>';
+    pg.querySelector("h1").after(tb);
+  });
+  document.querySelectorAll("input[data-k]").forEach(function(b){
+    b.checked=done(b.dataset.k);
+    b.addEventListener("change",function(){set("q2-"+b.dataset.k,b.checked?"1":"0");refresh();});
+  });
+  document.querySelectorAll(".page:not(.cover)").forEach(function(pg){
+    var i=order.indexOf(pg.id);if(i<0)return;
+    var t=document.createElement("div");t.className="turn";
+    var p=order[i-1],n=order[i+1];
+    t.innerHTML=(p?'<a href="#'+p+'"><small>ก่อนหน้า</small>'+names[p]+'</a>':'<span></span>')+(n?'<a href="#'+n+'" style="text-align:right"><small>ถัดไป</small>'+names[n]+'</a>':'<span></span>');
+    pg.appendChild(t);
+  });
+
+  function refresh(){
+    var n=0;
+    topics.forEach(function(k){
+      var d=done(k);if(d)n++;
+      var st=document.querySelector("#"+k+" .tb .st");
+      if(st){st.classList.toggle("ok",d);st.querySelector("b").textContent=d?"อ่านแล้ว":"ยังไม่จบ";}
+      var sp=document.querySelector('.stamp[data-k="'+k+'"]');
+      if(sp)sp.classList.toggle("on",d);
+    });
+    document.querySelector("#setbar i").style.width=(n*25)+"%";
+    var t=topics.filter(function(k){return !done(k)})[0];
+    document.getElementById("next").innerHTML=t?'<a class="go" href="#'+t+'">อ่านต่อ: '+long[t]+'</a>':'<a class="go" href="#quiz">อ่านครบแล้ว ลองทำข้อสอบ</a>';
+  }
+
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var n=Math.round((new Date(2026,10,10)-today)/86400000);
+  var dn=document.getElementById("dn");
+  if(n>0){
+    if(reduce){dn.textContent=n}else{var t0=null;(function f(ts){t0=t0||ts;var p=Math.min((ts-t0)/800,1);dn.textContent=Math.max(1,Math.round(n*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(f)})(performance.now())}
+  }else{dn.textContent=n===0?"0":"-";document.getElementById("dl").textContent=n===0?"วันสอบวันนี้":"สอบผ่านไปแล้ว"}
+  if(now.getFullYear()===2026&&now.getMonth()===10)document.querySelectorAll(".tl li").forEach(function(li){if(+li.dataset.d===now.getDate())li.classList.add("now")});
+
+  document.getElementById("skip").addEventListener("click",function(){var m=document.querySelector(".page.on h1")||document.getElementById("content");m.setAttribute("tabindex","-1");m.focus();});
+  /* 5: slide images open with keyboard too */
+  document.querySelectorAll(".page figure img").forEach(function(img){if(img.closest(".hunt"))return;img.tabIndex=0;img.setAttribute("role","button");img.setAttribute("aria-label","ขยายรูป: "+img.alt);});
+  document.addEventListener("keydown",function(e){var img=e.target;if((e.key==="Enter"||e.key===" ")&&img.matches&&img.matches(".page figure img[role=button]")){e.preventDefault();img.click();}});
+  var pages=document.querySelectorAll(".page");
+  var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("seen");io.unobserve(e.target)}})},{threshold:.15}):null;
+  function observe(){document.querySelectorAll(".page.on figure:not(.seen)").forEach(function(f){if(io)io.observe(f);else f.classList.add("seen")})}
+  function route(first){
+    var id=(location.hash||"#home").slice(1);
+    if(!document.querySelector(".page#"+id))id="home";
+    pages.forEach(function(p){p.classList.toggle("on",p.id===id)});
+    document.querySelectorAll(".bar nav a").forEach(function(a){if(a.getAttribute("href")==="#"+id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+    if(!first)window.scrollTo(0,0);
+    document.title=(names[id]||"แหล่งที่มา")+" | ITDS261 Quiz 2";
+    observe();
+  }
+  window.addEventListener("hashchange",function(){route(false)});
+  window.addEventListener("keydown",function(e){
+    if(e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA|SUMMARY/.test(e.target.tagName)||document.getElementById("lb").open||document.querySelector("#qroot .qtext"))return;
+    var id=(location.hash||"#home").slice(1),i=order.indexOf(id);if(i<0)return;
+    if(e.key==="ArrowRight"&&order[i+1])location.hash="#"+order[i+1];
+    if(e.key==="ArrowLeft"&&order[i-1])location.hash="#"+order[i-1];
+  });
+
+  var lb=document.getElementById("lb"),lim=lb.querySelector("img");
+  document.addEventListener("click",function(e){
+    var img=e.target.closest&&e.target.closest(".page figure img");
+    if(!img||img.closest(".hunt"))return;
+    lim.src=img.src;lim.alt=img.alt;document.getElementById("lbc").textContent=img.alt;lb.showModal();
+  });
+  lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
+  document.getElementById("lbx").addEventListener("click",function(){lb.close()});
+
+  var spots=[
+    {x:262,y:335,rx:40,ry:64,t:"<b>DF1</b>: E1 ส่งข้อมูลตรงไปหา E1 (entity &rarr; entity) ไม่ผ่าน process ผิดกฎ flow ต้องเริ่มหรือจบที่ process"},
+    {x:372,y:265,rx:50,ry:50,t:"<b>DF5</b>: E1 เขียนเข้า data store DS1 ตรงๆ (entity &rarr; store) ไม่ผ่าน process"},
+    {x:512,y:240,rx:64,ry:58,t:"<b>P2 (1.0)</b>: มี input (DF2, DF3) แต่ไม่มี output ผิดกฎ process ต้องมีอย่างน้อย 1 input และ 1 output"}
+  ];
+  var plate=document.getElementById("hplate"),marks=plate.querySelector(".marks"),found={};
+  function mark(i){
+    if(found[i])return;found[i]=1;
+    var s=spots[i],el=document.createElementNS("http://www.w3.org/2000/svg","ellipse");
+    el.setAttribute("cx",s.x);el.setAttribute("cy",s.y);el.setAttribute("rx",s.rx);el.setAttribute("ry",s.ry);el.setAttribute("pathLength","1");
+    marks.appendChild(el);
+    var li=document.createElement("li");li.innerHTML=s.t;document.getElementById("hl").appendChild(li);
+    document.getElementById("hc").textContent="พบ "+Object.keys(found).length+" / 3";
+  }
+  plate.addEventListener("click",function(e){
+    var r=plate.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*842,y=(e.clientY-r.top)/r.height*595,hit=-1;
+    spots.forEach(function(s,i){var dx=(x-s.x)/(s.rx*1.25),dy=(y-s.y)/(s.ry*1.25);if(dx*dx+dy*dy<=1)hit=i});
+    if(hit>=0)mark(hit);else{plate.classList.remove("miss");void plate.offsetWidth;plate.classList.add("miss")}
+  });
+  document.getElementById("hpick").addEventListener("click",function(e){
+    var b=e.target.closest(".pk");if(!b)return;var i=+b.dataset.s,m=document.getElementById("hmsg");
+    if(i>=0){mark(i);b.classList.add("hit");m.textContent=b.textContent+" ผิดกฎจริง";}
+    else{b.classList.add("miss");m.textContent=b.textContent+" ไม่ผิดกฎ ลองตัวอื่น";plate.classList.remove("miss");void plate.offsetWidth;plate.classList.add("miss");}
+  });
+  document.getElementById("hall").addEventListener("click",function(){spots.forEach(function(_,i){mark(i)})});
+
+  refresh();
+  route(true);
+})();
+
+</script>
+</body>
+</html>

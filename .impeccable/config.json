@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "ITDS261-Quiz2-Guide.html"
+        ],
+        "createdAt": "2026-11-08T06:47:13.322Z",
+        "reason": "user chose the Blueprint direction in chat; drafting grid is the world, not decoration"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "ITDS261-Quiz2-Guide.html"
+        ],
+        "createdAt": "2026-11-08T06:47:33.458Z",
+        "reason": "agent decision: top-bar tabs sit flush on the bar rule on purpose so the active-tab underline reads as the bar's indicator; not user confirmed"
+      }
+    ]
+  }
+}

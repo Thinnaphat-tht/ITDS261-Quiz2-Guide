@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T00:00:00Z",
+  "title": "Design System: ITDS261 Quiz 2 Guide",
+  "extensions": {
+    "colorMeta": {
+      "cyanotype-ground": { "role": "neutral", "displayName": "Cyanotype Ground", "tonalRamp": ["#04142e", "#082450", "#0d3770", "#1b4d8f", "#3a6aac", "#6d93c6", "#a8c1e0", "#e6eefa"] },
+      "sheet-panel": { "role": "neutral", "displayName": "Sheet Panel", "tonalRamp": ["#031026", "#061f45", "#0a2f62", "#164383", "#2f5ea3", "#6286bf", "#a2bbdc", "#ffffff"] },
+      "amber-mark": { "role": "primary", "displayName": "Amber Mark", "tonalRamp": ["#3d2600", "#6b4400", "#8a4b00", "#b87a00", "#e0a51f", "#ffc84a", "#ffde8f", "#fff4d6"] },
+      "pale-cyan-line": { "role": "secondary", "displayName": "Pale Cyan Line", "tonalRamp": ["#0b2a5b", "#0f3f8f", "#1450b0", "#3a78d0", "#6aa2e8", "#9fd0ff", "#c8e4ff", "#eef7ff"] },
+      "highlight-yellow": { "role": "tertiary", "displayName": "Highlight Yellow", "tonalRamp": ["#4a3a00", "#7a6200", "#a88a10", "#d1b23a", "#f0cf63", "#ffe08a", "#ffecb8", "#fff8e3"] },
+      "correct-green": { "role": "tertiary", "displayName": "Correct Green", "tonalRamp": ["#06210f", "#0d4022", "#14803f", "#22a65a", "#3fc87a", "#5ee39b", "#9cf0c2", "#dcfbe9"] },
+      "revision-red": { "role": "tertiary", "displayName": "Revision Red", "tonalRamp": ["#2a0606", "#5c1013", "#8f1a20", "#c4262e", "#e5484e", "#ff7b7b", "#ffaeae", "#ffe3e3"] },
+      "drafting-ink": { "role": "neutral", "displayName": "Drafting Ink" },
+      "faded-ink": { "role": "neutral", "displayName": "Faded Ink" },
+      "sheet-chip": { "role": "neutral", "displayName": "Sheet Chip" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Cover sheet title and the day-count numeral." },
+      "headline": { "displayName": "Sheet Title", "purpose": "h1 of each sheet and of the quiz." },
+      "title": { "displayName": "Section", "purpose": "h2 section headings in pale cyan." },
+      "body": { "displayName": "Reading", "purpose": "Thai reading column, about 70 characters." },
+      "label": { "displayName": "Drafting Label", "purpose": "Title block captions, nav codes, figure captions." }
+    },
+    "shadows": [
+      { "name": "pinned-print", "value": "0 8px 22px rgba(0,0,0,.45)", "purpose": "Slide images resting on the sheet. UI never casts a shadow." }
+    ],
+    "motion": [
+      { "name": "sheet-in", "value": "clip-path inset 100% to 0 from the bottom, 0.6s cubic-bezier(.2,.7,.2,1)", "purpose": "Sheet unrolls when a tab changes." },
+      { "name": "plot-reveal", "value": "clip-path inset right 100% to 0, 0.9s cubic-bezier(.3,.7,.2,1)", "purpose": "Slide image is plotted left to right on scroll." },
+      { "name": "stamp", "value": "rotate -14deg scale 1.9 to rotate -6deg scale 1, 0.45s cubic-bezier(.2,.9,.3,1.3)", "purpose": "Read stamp lands on the cover index." },
+      { "name": "revision-draw", "value": "stroke-dashoffset 1 to 0, 0.7s", "purpose": "Red ellipse drawn around a found DFD error." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" },
+      { "name": "margin-figures", "value": "1120px" }
+    ]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Next action: continue reading, next question.", "html": "<button class=\"ds-btn-primary\">อ่านต่อ: S1 DFD</button>", "css": ".ds-btn-primary{background:#ffc84a;color:#0a2f62;border:0;border-radius:0;padding:12px 22px;font:700 16px/1.2 'Chakra Petch','Sarabun',sans-serif;letter-spacing:.04em;cursor:pointer}.ds-btn-primary:hover{filter:brightness(1.08)}.ds-btn-primary:focus-visible{outline:3px solid #ffc84a;outline-offset:3px}" },
+    { "name": "Ghost Button", "kind": "button", "refersTo": "button-ghost", "description": "Back, reset, theme toggle.", "html": "<button class=\"ds-btn-ghost\">เริ่มชุดนี้ใหม่ (Reset)</button>", "css": ".ds-btn-ghost{background:transparent;color:#eaf3ff;border:1px solid rgba(159,208,255,.42);border-radius:0;padding:8px 14px;font:700 14px/1.2 'Chakra Petch','Sarabun',sans-serif;cursor:pointer}.ds-btn-ghost:hover{background:#123f80}.ds-btn-ghost:focus-visible{outline:3px solid #ffc84a;outline-offset:3px}" },
+    { "name": "Sheet Tab", "kind": "nav", "refersTo": "nav-tab", "description": "Top bar tab with drafting code.", "html": "<nav class=\"ds-nav\"><a href=\"#\"><i>S1</i>DFD</a><a href=\"#\" aria-current=\"page\"><i>S2</i>หา Error</a></nav>", "css": ".ds-nav{display:flex;gap:2px;background:#0d3770;border-bottom:1px solid rgba(159,208,255,.42)}.ds-nav a{display:flex;flex-direction:column;padding:8px 14px;color:#b6cff5;text-decoration:none;font:500 15px/1.25 'Chakra Petch',sans-serif;border-bottom:3px solid transparent}.ds-nav a i{font-style:normal;font-size:13px;letter-spacing:.1em;color:#9fd0ff}.ds-nav a:hover{color:#eaf3ff}.ds-nav a[aria-current]{color:#eaf3ff;border-bottom-color:#ffc84a}" },
+    { "name": "Progress Chip", "kind": "chip", "refersTo": "progress-chip", "description": "Question tracker: green right, red wrong, amber outline current.", "html": "<div class=\"ds-chips\"><button class=\"ds-chip ok\">1</button><button class=\"ds-chip no cur\">2</button><button class=\"ds-chip\">3</button></div>", "css": ".ds-chips{display:flex;gap:6px}.ds-chip{width:38px;height:38px;border:1px solid rgba(159,208,255,.42);background:transparent;color:#eaf3ff;font:700 14px/1 'Chakra Petch',sans-serif;cursor:pointer}.ds-chip:hover{background:#123f80}.ds-chip.ok{background:#5ee39b;border-color:#5ee39b;color:#06210f}.ds-chip.no{background:#ff7b7b;border-color:#ff7b7b;color:#2a0606}.ds-chip.cur{outline:3px solid #ffc84a;outline-offset:2px}" },
+    { "name": "Quiz Option", "kind": "custom", "refersTo": "quiz-option", "description": "Answer row; turns green or red after answering.", "html": "<button class=\"ds-opt right\"><i>B</i><span>ข้อมูลลูกค้า</span></button>", "css": ".ds-opt{display:flex;gap:12px;width:100%;text-align:left;border:1px solid rgba(159,208,255,.42);background:transparent;color:#eaf3ff;padding:12px 14px;font:400 17px/1.6 'Sarabun',sans-serif;cursor:pointer}.ds-opt i{font:700 15px/1.7 'Chakra Petch',sans-serif;font-style:normal;color:#9fd0ff}.ds-opt:hover{background:#123f80}.ds-opt.right{border:2px solid #5ee39b;background:rgba(94,227,155,.22)}.ds-opt.right::after{content:'ถูก';margin-left:auto;color:#5ee39b;font:700 14px/1.7 'Chakra Petch',sans-serif}" },
+    { "name": "Trap Callout", "kind": "card", "refersTo": "", "description": "Notched callout for exam traps.", "html": "<div class=\"ds-trap\">Data flow ต้องมี process อยู่ปลายหนึ่ง</div>", "css": ".ds-trap{position:relative;margin:20px 0;padding:18px 18px 12px;border:1px solid #ffc84a;background:#0a2f62;color:#eaf3ff;font:400 17px/1.7 'Sarabun',sans-serif}.ds-trap::before{content:'กับดัก';position:absolute;top:-13px;left:14px;padding:0 8px;background:#0a2f62;color:#ffc84a;font:700 14px/24px 'Chakra Petch',sans-serif;letter-spacing:.08em}" },
+    { "name": "Title Block", "kind": "custom", "refersTo": "", "description": "Sheet metadata under each sheet h1.", "html": "<div class=\"ds-tb\"><div><span>SHEET</span><b>S2 / 4</b></div><div><span>SOURCE</span><b>L6</b></div><div><span>TIME</span><b>~25 นาที</b></div><div><span>STATUS</span><b>อ่านแล้ว</b></div></div>", "css": ".ds-tb{display:inline-grid;grid-template-columns:repeat(4,auto);border:1px solid rgba(159,208,255,.42);font:500 14px/1.3 'Chakra Petch',sans-serif;color:#eaf3ff}.ds-tb div{padding:8px 14px;border-right:1px solid rgba(159,208,255,.42)}.ds-tb div:last-child{border-right:0}.ds-tb span{display:block;font-size:13px;letter-spacing:.1em;color:#b6cff5}.ds-tb b{font-size:16px}.ds-tb div:last-child b{color:#ffc84a}" }
+  ],
+  "narrative": {
+    "northStar": "The Drawing Set",
+    "overview": "The guide is a set of engineering sheets. Each topic is one sheet with a title block (SHEET, SOURCE, TIME, STATUS), the home page is the cover sheet, and the lecturer's slides are pinned to the sheet like plotted prints. The world comes from the subject itself: DFDs and flowcharts are line drawings, so the frame speaks in drafting lines on cyanotype blue. The world owns the frame and leaves the reading column calm.",
+    "keyCharacteristics": [
+      "Cyanotype ground with a faint 32px drafting grid outside the sheet.",
+      "Square corners everywhere; the only rounded shape is the DFD process box.",
+      "Drafting labels in tracked Chakra Petch; reading text in Sarabun at 18px.",
+      "One amber accent for exam-critical marks and the primary action.",
+      "A manual light/dark toggle: cyanotype (dark) and whiteprint (light) are the same world inverted."
+    ],
+    "rules": [
+      { "name": "The One Amber Rule", "body": "Amber marks what is examined or what to do next. It never decorates.", "section": "colors" },
+      { "name": "The Meaning-Only Green Rule", "body": "Green appears only to say \"correct\". A green page theme is rejected.", "section": "colors" },
+      { "name": "The Calm Column Rule", "body": "Drafting type stays in the frame (nav, title block, labels, headings). Paragraphs are always Sarabun.", "section": "typography" },
+      { "name": "The Paper-On-Sheet Rule", "body": "Only real paper (slides) casts a shadow. UI never does.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every new page inside the drawing-set frame: sheet panel, title block, square corners, 1px lines.",
+      "Do use amber only for exam-critical marks and the next action.",
+      "Do use green for correct and red for wrong in any answer feedback, in both themes.",
+      "Do show the lecturer's real slide instead of redrawing it, with a caption naming lecture and page.",
+      "Do keep body text Sarabun 18px at about 70 characters and contrast at 4.5:1 or more in both themes.",
+      "Do give every motion a reduced-motion fallback that still shows the final state."
+    ],
+    "donts": [
+      "Don't use a green or purple page theme; blue is the committed family.",
+      "Don't put the drafting grid behind reading text.",
+      "Don't add rounded cards, coloured side stripes, gradients or glow shadows.",
+      "Don't use emoji as icons.",
+      "Don't let a feature work by mouse only; every click interaction needs a keyboard path."
+    ]
+  }
+}
