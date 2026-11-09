@@ -25,13 +25,14 @@
   /* ---------- DFD renderer (Gane/Sarson shapes, as in slide L6 p42) ---------- */
   var SIZE = { e: [100, 42], p: [118, 58], s: [128, 36] };
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function drawDFD(spec) {
-    var W = spec.w || 620, H = spec.h || 320, N = {}, out = [];
+  function drawDFD(spec, hit) {
+    var W = spec.w || 620, H = spec.h || 320, N = {}, out = [], hits = [], nhits = [];
     spec.n.forEach(function (n) { N[n[1]] = n; });
     out.push('<svg class="dfd" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="แผนภาพ DFD">');
     out.push('<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="currentColor"/></marker></defs>');
     spec.n.forEach(function (n) {
       var k = n[0], x = n[3], y = n[4], s = SIZE[k], w = s[0], h = s[1], l = x - w / 2, t = y - h / 2;
+      if (hit) nhits.push('<rect class="hit hr ' + (typeof hit === 'function' ? hit('n:' + n[1]) : '') + '" data-k="n:' + n[1] + '" x="' + (l - 4) + '" y="' + (t - 4) + '" width="' + (w + 8) + '" height="' + (h + 8) + '" rx="12"/>');
       if (k === 'e') {
         out.push('<rect class="sh" x="' + l + '" y="' + t + '" width="' + w + '" height="' + h + '"/><text x="' + x + '" y="' + (y + 5) + '" text-anchor="middle">' + esc(n[2]) + '</text>');
       } else if (k === 'p') {
@@ -46,7 +47,7 @@
     });
     var pairCount = {}, pairIdx = {};
     spec.f.forEach(function (f) { var k = [f[0], f[1]].sort().join('|'); pairCount[k] = (pairCount[k] || 0) + 1; });
-    spec.f.forEach(function (f) {
+    spec.f.forEach(function (f, fi) {
       var a = N[f[0]], b = N[f[1]], k = [f[0], f[1]].sort().join('|');
       var idx = pairIdx[k] = (pairIdx[k] === undefined ? 0 : pairIdx[k] + 1), off = (idx - (pairCount[k] - 1) / 2) * 24 * (f[0] > f[1] ? -1 : 1);
       var dx = b[3] - a[3], dy = b[4] - a[4], len = Math.sqrt(dx * dx + dy * dy) || 1, ux = dx / len, uy = dy / len;
@@ -58,10 +59,12 @@
       var da = edge(a, ux, uy), db = edge(b, ux, uy);
       var x1 = a[3] + ux * da + px, y1 = a[4] + uy * da + py, x2 = b[3] - ux * db + px, y2 = b[4] - uy * db + py;
       out.push('<line class="fl" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" marker-end="url(#ar)"/>');
+      if (hit) hits.push('<line class="hit hl ' + (typeof hit === 'function' ? hit('f' + fi) : '') + '" data-k="f' + fi + '" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>');
       var sg = off > 0 ? 1 : off < 0 ? -1 : (Math.abs(uy) < 0.3 ? -1 : 0), lx = (x1 + x2) / 2 - uy * sg * 12 * (off ? 1 : 0.6), ly = (y1 + y2) / 2 + ux * sg * 12 * (off ? 1 : 0.6) + 4;
       if (Math.abs(uy) >= 0.3 && !off) lx += 8 * (ux >= 0 ? 1 : -1) + (Math.abs(ux) < 0.3 ? 0 : 0);
       if (f[2]) out.push('<text class="fx" x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="' + (Math.abs(uy) >= 0.3 && !off ? 'start' : 'middle') + '">' + esc(f[2]) + '</text>');
     });
+    out.push(hits.join('') + nhits.join(''));
     out.push('</svg>');
     return out.join('');
   }
@@ -113,7 +116,7 @@
     var t = S.topics.filter(function (x) { return x.id === tid; })[0], set = t.sets[si];
     var qs = set.qs.map(function (q, i) { q = autoQuestion(q); q._i = i; return q; });
     if (only) qs = qs.filter(function (q) { return only.indexOf(q._i) >= 0; });
-    state = { t: t, si: si, qs: qs, i: 0, ans: qs.map(function () { return null; }), orders: qs.map(function (q) { return shuffle(q.o.map(function (_, k) { return k; })); }), only: only ? only.slice() : null };
+    state = { t: t, si: si, qs: qs, i: 0, ans: qs.map(function () { return null; }), orders: qs.map(function (q) { return shuffle((q.o || []).map(function (_, k) { return k; })); }), only: only ? only.slice() : null, work: qs.map(function () { return {}; }) };
     show(true);
   }
 
@@ -134,25 +137,30 @@
     });
     h += '</div>';
     h += '<p class="qtext">' + q.q + '</p>';
-    if (q.spec) h += '<div class="qfig">' + drawDFD(q.spec) + '</div>';
+    if (q.spec && !q.type) h += '<div class="qfig">' + drawDFD(q.spec) + '</div>';
     if (q.img) h += '<div class="qfig"><img src="' + q.img + '" alt="รูปสไลด์ประกอบข้อสอบ"></div>';
-    h += '<div class="opts">';
-    st.orders[st.i].forEach(function (k, p) {
-      var cls = 'opt' + (a === null ? '' : (k === q.a ? ' right' : (k === a ? ' wrong' : '')));
-      h += '<button class="' + cls + '" type="button" data-k="' + k + '"' + (a === null ? '' : ' disabled') + '><i>' + 'ABCD'[p] + '</i><span>' + q.o[k] + '</span></button>';
-    });
-    h += '</div><div id="qfb" aria-live="polite">';
+    if (q.type) h += '<div class="ix' + (a === null ? '' : (a === q.a ? ' done-ok' : ' done-no')) + '" id="ixbox"></div>';
+    else {
+      h += '<div class="opts">';
+      st.orders[st.i].forEach(function (k, p) {
+        var cls = 'opt' + (a === null ? '' : (k === q.a ? ' right' : (k === a ? ' wrong' : '')));
+        h += '<button class="' + cls + '" type="button" data-k="' + k + '"' + (a === null ? '' : ' disabled') + '><i>' + 'ABCD'[p] + '</i><span>' + q.o[k] + '</span></button>';
+      });
+      h += '</div>';
+    }
+    h += '<div id="qfb" aria-live="polite">';
     if (a !== null) h += feedback(q, a);
     h += '</div><div class="qnav">' + (st.i > 0 ? '<button class="btn alt" id="qprev" type="button">&larr; ข้อก่อนหน้า</button>' : '<span></span>') +
       '<button class="btn" id="qnext" type="button">' + (last ? 'ดูคะแนน' : (a === null ? 'ข้ามข้อนี้' : 'ข้อถัดไป')) + '</button></div>';
     host.innerHTML = h;
+    if (q.type) root.QUIZ_IX.mount(q, host.querySelector('#ixbox'), st.work[st.i], function (ok) { st.ans[st.i] = ok ? 1 : 0; show(false); fx(ok); });
     if (scroll) window.scrollTo(0, host.getBoundingClientRect().top + window.scrollY - 80);
     if (a !== null) { var nx = host.querySelector('#qnext'); if (nx) nx.focus({ preventScroll: true }); }
   }
 
   function feedback(q, a) {
     var ok = a === q.a;
-    return '<div class="fb ' + (ok ? 'ok' : 'no') + '"><b>' + (ok ? 'ถูก' : 'ผิด') + '</b> ' + q.why + (q.src ? '<small class="src">อ้างอิง: ' + q.src + '</small>' : '') + '</div>';
+    return '<div class="fb ' + (ok ? 'ok' : 'no') + '"><b>' + (ok ? 'ถูก' : 'ผิด') + '</b> ' + (q.type && !ok ? '<span class="ixsol">เฉลย: ' + root.QUIZ_IX.solution(q).replace(/</g, '&lt;') + '</span> ' : '') + q.why + (q.src ? '<small class="src">อ้างอิง: ' + q.src + '</small>' : '') + '</div>';
   }
 
   function answer(k) {
@@ -177,7 +185,7 @@
     } catch (e) { /* no audio available */ }
   }
   function fx(ok) {
-    var el = host.querySelector(ok ? '.opt.right' : '.opt.wrong'), chip = host.querySelector('.chip.cur'), fb = host.querySelector('.fb');
+    var el = host.querySelector(ok ? '.opt.right' : '.opt.wrong') || host.querySelector('.ix'), chip = host.querySelector('.chip.cur'), fb = host.querySelector('.fb');
     sound(ok);
     if (el) el.classList.add(ok ? 'pop' : 'shake');
     if (chip) chip.classList.add(ok ? 'pop' : 'shake');
@@ -201,7 +209,7 @@
     h += '<p>' + (skipped ? 'ข้ามไป ' + skipped + ' ข้อ (นับเป็นยังไม่ถูก) ' : '') + (pct >= 85 ? 'แม่นแล้ว ไปชุดถัดไปได้' : pct >= 60 ? 'พอใช้ ทวนข้อที่พลาดแล้วทำซ้ำอีกรอบ' : 'ยังไม่แน่น กลับไปอ่านแผ่นแบบของเรื่องนี้ก่อนทำซ้ำ') + '</p>';
     if (wrong.length) {
       h += '<h2 class="sub2">ข้อที่พลาดหรือข้าม (' + wrong.length + ')</h2><ol class="wl">';
-      wrong.forEach(function (i) { var q = autoQuestion(st.t.sets[st.si].qs[i]); h += '<li><span>' + q.q + '</span><b>เฉลย: ' + q.o[q.a] + '</b><small>' + q.why + '</small></li>'; });
+      wrong.forEach(function (i) { var q = autoQuestion(st.t.sets[st.si].qs[i]); h += '<li><span>' + q.q + '</span><b>เฉลย: ' + (q.type ? root.QUIZ_IX.solution(q) : q.o[q.a]) + '</b><small>' + q.why + '</small></li>'; });
       h += '</ol>';
     }
     h += '<p><button class="btn" id="qagain" type="button">ทำชุดนี้ใหม่ (Reset)</button> ' + (wrong.length && !st.only ? '<button class="btn alt" id="qwrong" type="button">ทำเฉพาะข้อที่พลาด</button> ' : '') + '<button class="btn alt" id="qhub" type="button">กลับหน้าเลือกชุด</button> <button class="btn alt" id="qreview" type="button">ดูข้อสอบที่ทำ</button></p>';
@@ -229,7 +237,7 @@
       }
     });
     window.addEventListener('keydown', function (e) {
-      if (!state || !host.offsetParent || e.ctrlKey || e.metaKey || e.altKey || !host.querySelector('.qtext')) return;
+      if (!state || !host.offsetParent || e.ctrlKey || e.metaKey || e.altKey || !host.querySelector('.qtext') || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
       var n = 'abcd1234'.indexOf(e.key.toLowerCase());
       if (n >= 0 && state.ans[state.i] === null) { var b = host.querySelectorAll('.opt')[n % 4]; if (b) { e.preventDefault(); answer(b.dataset.k); } }
       else if (e.key === 'Enter' && state.ans[state.i] !== null) { var nx = host.querySelector('#qnext'); if (nx && document.activeElement !== nx) nx.click(); }
