@@ -356,7 +356,7 @@ main:focus,h1:focus{outline:none}
 <div id="glmap"></div>
 
 <h2 class="sec">1.1 DFD และสัญลักษณ์ 4 ตัว</h2>
-<figure><div class="plate"><img src="img/L6_p10.jpg" alt="L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)" loading="lazy"></div><figcaption>L6 หน้า 10: สัญลักษณ์ 2 แบบ (Yourdon/DeMarco ซ้าย, Gane/Sarson ขวา)</figcaption></figure>
+
 <div class="def"><b>Data Flow Diagram (DFD)</b> = แผนภาพแสดง <i>ข้อมูลไหลผ่านระบบ</i> เริ่มเป็น input แล้วถูกแปลงเป็น output ใช้ในการ requirements modeling (flow-oriented modeling)</div>
 <table>
 <tr><th>องค์ประกอบ</th><th>นิยาม (ตามสไลด์)</th><th>Yourdon/DeMarco</th><th>Gane/Sarson</th></tr>
@@ -369,7 +369,7 @@ main:focus,h1:focus{outline:none}
 <p><b>ตัวอย่างสไลด์ของวงกลม process:</b> compute triangle area รับ base, height ส่ง area &bull; Process ต้องผ่านการ "refine" จนแต่ละ bubble ทำเรื่องเดียว</p>
 
 <h2 class="sec">1.2 Context diagram และลำดับชั้น (hierarchy)</h2>
-<figure><div class="plate"><img src="img/L6_p21.jpg" alt="L6 หน้า 21: ตัวอย่าง Level-0 DFD (context diagram)" loading="lazy"></div><figcaption>L6 หน้า 21: ตัวอย่าง Level-0 DFD (context diagram)</figcaption></figure><figure><div class="plate"><img src="img/L6_p22.jpg" alt="L6 หน้า 22: Data Flow Hierarchy (level 0 แตกเป็น level 1)" loading="lazy"></div><figcaption>L6 หน้า 22: Data Flow Hierarchy (level 0 แตกเป็น level 1)</figcaption></figure>
+
 <div class="def"><b>Context diagram (Level 0)</b> = DFD ระดับบนสุดของทุก process model แสดงระบบทั้งระบบเป็น <b>process เดียว (หมายเลข 0)</b> และแสดง <b>external entity ทั้งหมด</b> ที่ส่งหรือรับข้อมูลกับระบบ</div>
 <ul>
 <li>เริ่มวาดจาก context diagram เสมอ (หรือเรียก level 0), ต้องแสดง external entity ที่ level 0 และ label ลูกศรทุกเส้น</li>
@@ -377,7 +377,7 @@ main:focus,h1:focus{outline:none}
 <li>แต่ละ bubble ถูก refine จนทำสิ่งเดียว &bull; <i>expansion ratio</i> ลดลงเมื่อระดับเพิ่ม &bull; ระบบส่วนใหญ่ต้องการ <b>3–7 ระดับ</b> &bull; ลูกศรเส้นเดียวอาจถูกขยายเมื่อลงระดับ (data dictionary ให้รายละเอียด)</li>
 </ul>
 <h3 class="subsec">การให้เลข (Diagram numbering)</h3>
-<figure><div class="plate"><img src="img/L6_p34.jpg" alt="L6 หน้า 34: DFD Numbering + Hierarchical Consistency" loading="lazy"></div><figcaption>L6 หน้า 34: DFD Numbering + Hierarchical Consistency</figcaption></figure><figure><div class="plate"><img src="img/L6_p37.jpg" alt="L6 หน้า 37: ตัวอย่าง Level 2 ของ Library Query System" loading="lazy"></div><figcaption>L6 หน้า 37: ตัวอย่าง Level 2 ของ Library Query System</figcaption></figure>
+
 <table>
 <tr><th>ระดับ</th><th>เลข process</th><th>ตัวอย่าง</th></tr>
 <tr><td>Context</td><td>"Level 0" process เป็น <b>0</b></td><td>0</td></tr>
@@ -388,7 +388,7 @@ main:focus,h1:focus{outline:none}
 <p>ตัวอย่างสไลด์ Library Query System: Level 0 = <code>0 Library Query System</code> (Student, Publishers) &rarr; Level 1 = <code>1 Search for book</code>, <code>2 Check member status</code> &rarr; Level 2 ของ process 1 = <code>1.1 Search by book name</code>, <code>1.2 Search by author name</code></p>
 
 <h2 class="sec">1.3 Balancing และ consistency</h2>
-<figure><div class="plate"><img src="img/L6_p26.jpg" alt="L6 หน้า 26: ความต่างระหว่าง Parent diagram กับ Child diagram" loading="lazy"></div><figcaption>L6 หน้า 26: ความต่างระหว่าง Parent diagram กับ Child diagram</figcaption></figure>
+
 <div class="def"><b>Balancing</b> = ทำให้ข้อมูลที่แสดงในระดับหนึ่งของ DFD ถูกต้องตรงกับระดับถัดไป: data flow ของ parent ต้องถูกส่งต่อลงไปใน child diagram; child เพิ่ม process และ data flow ใหม่ได้</div>
 <ul>
 <li>Input (output) flow ของ parent ต้องปรากฏใน child เป็น input (output) &bull; และ flow ของ child ต้องปรากฏใน parent ด้วย</li>
@@ -416,7 +416,7 @@ main:focus,h1:focus{outline:none}
 <div class="hand"><span class="tag h">ลายมือ</span> L7 หน้า 11 คุณจดว่า <b>PSPEC "ใช้ในการอธิบาย Process"</b> (PSPEC = อธิบายว่า process ข้างในทำอะไร)</div>
 
 <h2 class="sec">1.4 กฎของ data flow (Rules for Data Flows)</h2>
-<figure><div class="plate"><img src="img/L6_p27.jpg" alt="L6 หน้า 27: Rules for Data Flows (ซ้าย = ผิด, ขวา = แก้ให้ถูก)" loading="lazy"></div><figcaption>L6 หน้า 27: Rules for Data Flows (ซ้าย = ผิด, ขวา = แก้ให้ถูก)</figcaption></figure><figure><div class="plate"><img src="img/L6_p28.jpg" alt="L6 หน้า 28: Don't Break DFD Rules" loading="lazy"></div><figcaption>L6 หน้า 28: Don't Break DFD Rules</figcaption></figure>
+
 <ol>
 <li><b>Data flow ห้ามไม่มีชื่อ</b> (never go unnamed)</li>
 <li>ใน logical modeling ชื่อ flow ต้องอธิบาย <i>ข้อมูล</i> โดยไม่ระบุ <i>วิธีทำ/implementation</i></li>
@@ -428,17 +428,17 @@ main:focus,h1:focus{outline:none}
 <li>Data flow ต้อง <b>ออกจากหรือเข้าสู่ process</b> (ห้าม entity &rarr; entity, entity &harr; store, store &rarr; store)</li>
 <li>Process ต้องมี <b>อย่างน้อย 1 input และ 1 output</b></li>
 </ol>
-<figure><div class="plate"><img src="img/L7_p09.jpg" alt="สไลด์ L7 หน้า 9: Don't Break DFD Rules (ภาพจริงของอาจารย์)" loading="lazy"></div><figcaption>สไลด์ L7 หน้า 9: Don't Break DFD Rules (ภาพจริงของอาจารย์)</figcaption></figure>
+
 
 <h2 class="sec">1.5 อธิบาย Process: PSPEC, Structured English, Decision table</h2>
-<figure><div class="plate"><img src="img/L7_p18.jpg" alt="L7 หน้า 18: ตัวอย่าง Decision table" loading="lazy"></div><figcaption>L7 หน้า 18: ตัวอย่าง Decision table</figcaption></figure>
+
 <div class="def"><b>Process Specification (PSPEC)</b> = คำอธิบายว่า process ทำอะไร ใช้ได้หลายรูปแบบ: <b>narrative, pseudocode (PDL), equations, tables, diagrams/charts</b> &bull; ใน design model หนึ่ง PSPEC แมปเป็น "component" หนึ่งหรือมากกว่าในซอฟต์แวร์ (DFD analysis model &rarr; design model)</div>
 <p>ตัวอย่างสไลด์: process <i>analyze triangle</i> รับ side dimensions ส่ง error message หรือ triangle type (equilateral / isosceles / scalene)</p>
 <div class="def"><b>Structured English</b> = ไวยากรณ์สำหรับระบุตรรกะของ process บนจุดแข็งของ structured programming + ภาษาอังกฤษ &bull; constructs: sequence, If-then-else (ตัดสินใจ 2 ทาง), Do the following based on / Case (หลายค่า), Repeat...until (วนอย่างน้อย 1 ครั้ง), Do while / For (วนได้ 0 ครั้ง) และอ้างอิง decision table ได้</div>
 <div class="def"><b>Policy</b> = ชุดกฎที่กำหนดว่าจะทำ process อย่างไร &bull; <b>Decision table</b> = ตารางระบุ <i>conditions</i> และ <i>actions</i> ที่สอดคล้อง ใช้ implement policy: แถว condition stubs / action stubs, คอลัมน์ rules (ตัวอย่างสไลด์: เช็คเงินสด Rule 1–4)</div>
 
 <h2 class="sec">1.6 Control flow (อ่านไว้ รอง)</h2>
-<figure><div class="plate"><img src="img/L7_p23.jpg" alt="L7 หน้า 23: Control flow เส้นประ (Divide)" loading="lazy"></div><figcaption>L7 หน้า 23: Control flow เส้นประ (Divide)</figcaption></figure><figure><div class="plate"><img src="img/L7_p24.jpg" alt="L7 หน้า 24: โน้ตลายมือของคุณ ตัวอย่าง log in" loading="lazy"></div><figcaption>L7 หน้า 24: โน้ตลายมือของคุณ ตัวอย่าง log in</figcaption></figure>
+
 <ul>
 <li>Control flow แทน <b>event</b> และ process ที่จัดการ event &bull; event = เงื่อนไข <b>Boolean</b> (จาก sensor ที่ซอฟต์แวร์อ่าน, interrupt, switch ที่ผู้ใช้กด, data condition)</li>
 <li>Control flow = <b>สัญญาณ</b>ที่สั่งงานหรือบอกว่าอะไรเกิดขึ้น เกิดที่ <b>จุดเวลาหนึ่ง</b> (discrete point in time)</li>
@@ -473,29 +473,25 @@ main:focus,h1:focus{outline:none}
 <h2 class="sec">2.1 แบบฝึกจากสไลด์ "Correct/Incorrect?" (L6 หน้า 38–41)</h2>
 <p>หน้า 39–41 ตัดมาแค่ส่วนของแผนภาพ จึงตัดสินจากว่า flow เชื่อมถูกคู่หรือไม่ (ต้องมี process อยู่ปลายหนึ่ง) เฉลยด้านล่างเป็น <b>การวิเคราะห์ของผมจากกฎในสไลด์</b> ไม่ใช่เฉลยทางการของอาจารย์ (สไลด์ไม่มีเฉลย) ลองตอบเองก่อนกดเปิด</p>
 
-<div class="q">ข้อ 1 (หน้า 38): process 3 อัน</div><figure><div class="plate"><img src="img/L6_p38.jpg" alt="สไลด์ L6 หน้า 38: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 38: Correct/Incorrect?</figcaption></figure>
+<div class="q">ข้อ 1 (หน้า 38): process 3 อัน</div>
 <details><summary>เปิดเฉลย</summary>
 <ul><li>5.0 Create Invoice: <b>ถูก</b> (มี input 1 output 1)</li>
 <li>Apply Insurance Premium: <b>ผิด</b> มีแต่ output (ไม่มี input) และ <b>ไม่มีเลข process</b></li>
 <li>2.1 Calculate Gross Pay: <b>ผิด</b> มีแต่ input ไม่มี output</li></ul></details>
 
-<div class="q">ข้อ 2 (หน้า 39)</div><figure><div class="plate"><img src="img/L6_p39.jpg" alt="สไลด์ L6 หน้า 39: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 39: Correct/Incorrect?</figcaption></figure>
+<div class="q">ข้อ 2 (หน้า 39)</div>
 <details><summary>เปิดเฉลย</summary>
 <ul><li>(a) <b>ผิด</b> store &rarr; store ไม่ผ่าน process</li><li>(b) <b>ถูก</b> process &rarr; store &rarr; process</li></ul></details>
 
-<div class="q">ข้อ 3 (หน้า 40)</div><figure><div class="plate"><img src="img/L6_p40.jpg" alt="สไลด์ L6 หน้า 40: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 40: Correct/Incorrect?</figcaption></figure>
+<div class="q">ข้อ 3 (หน้า 40)</div>
 <details><summary>เปิดเฉลย</summary>
 <ul><li>(a) <b>ถูก</b>: store &rarr; process คือการดึงข้อมูล (retrieval) โจทย์ชุดนี้ถามเรื่อง flow เชื่อมถูกคู่ไหม ส่วน 2.0 ยังไม่เห็น output เพราะสไลด์ตัดมาแค่ส่วนเดียวของแผนภาพ</li><li>(b) ถูก: process อ่านและอัปเดต store ได้ทั้งสองทิศ (3.0 มีทั้ง input และ output)</li></ul></details>
 
-<div class="q">ข้อ 4 (หน้า 41)</div><figure><div class="plate"><img src="img/L6_p41.jpg" alt="สไลด์ L6 หน้า 41: Correct/Incorrect?" loading="lazy"></div><figcaption>สไลด์ L6 หน้า 41: Correct/Incorrect?</figcaption></figure>
+<div class="q">ข้อ 4 (หน้า 41)</div>
 <details><summary>เปิดเฉลย</summary>
 <ul><li>(a) <b>ผิด</b> entity &rarr; entity &bull; (b) <b>ถูก</b> &bull; (c) <b>ผิด</b> entity &rarr; store ต้องผ่าน process</li></ul></details>
 
 <h2 class="sec">2.2 "List the Errors in This DFD" (L6 หน้า 42)</h2>
-<div class="hunt" id="hunt">
-<div class="hunt-ui"><p><b id="hc">พบ 0 / 3</b> ลองหาก่อนเปิดเฉลย: กดบนภาพตรงจุดที่คิดว่าผิดกฎ ผมแน่ใจ 3 จุด <button class="btn alt" id="hall" type="button">เฉลยทั้งหมด</button></p><p class="pick" id="hpick">หรือเลือกจากรายการ: <button type="button" class="pk" data-s="0">DF1</button><button type="button" class="pk" data-s="-1">DF2 (E1 &rarr; 1.0)</button><button type="button" class="pk" data-s="-1">DF2 (E1 &rarr; 2.0)</button><button type="button" class="pk" data-s="-1">DF3</button><button type="button" class="pk" data-s="-1">DF4</button><button type="button" class="pk" data-s="1">DF5</button><button type="button" class="pk" data-s="-1">DF6</button><button type="button" class="pk" data-s="-1">P1 (2.0)</button><button type="button" class="pk" data-s="2">P2 (1.0)</button></p><p id="hmsg" aria-live="polite" class="hmsg"></p><ul id="hl"></ul></div>
-<figure><div class="plate" id="hplate"><img src="img/L6_p42.jpg" alt="สไลด์ L6 หน้า 42: List the Errors in This DFD" loading="lazy"><svg class="marks" viewBox="0 0 842 595" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption>สไลด์ L6 หน้า 42: List the Errors in This DFD (โจทย์ของอาจารย์)</figcaption></figure>
-</div>
 <details><summary>เปิดเฉลย (วิเคราะห์ของผม ตรวจเทียบกฎในสไลด์)</summary>
 <table>
 <tr><th>#</th><th>ข้อผิดพลาด</th><th>กฎที่ละเมิด</th></tr>
@@ -525,14 +521,14 @@ main:focus,h1:focus{outline:none}
 <div class="def"><b>Version Control System (VCS)</b> เป็นส่วนหนึ่งของ CM มี 3 วัตถุประสงค์: <b>(1) กู้คืน configuration เก่า (2) ประสานการเปลี่ยนแปลง (3) ระบุเวอร์ชันและ component</b></div>
 
 <h2 class="sec">3.2 Git = distributed VCS</h2>
-<figure><div class="plate"><img src="img/L11_p12.jpg" alt="L11 หน้า 12: CVS แบบรวมศูนย์ (checkin/checkout กับ repository กลาง)" loading="lazy"></div><figcaption>L11 หน้า 12: CVS แบบรวมศูนย์ (checkin/checkout กับ repository กลาง)</figcaption></figure>
+
 <ul>
 <li>ฟรี open-source จัดการโปรเจกต์ตั้งแต่เล็กจนใหญ่ เร็ว มี local branching, staging area, หลาย workflow (เหนือ Subversion/CVS)</li>
 <li>ทุกอย่างเป็น <b>local</b> ทำงาน offline ได้ ทุก clone เป็น backup มี history ครบ (ต่างจาก CVS ที่มี repository กลางและ checkin/checkout)</li>
 </ul>
 <h2 class="sec">3.3 Staging area และวงจรสถานะไฟล์</h2>
 <div class="def">Git มี <b>staging area (index)</b> = ที่รวมการเปลี่ยนแปลงที่ "จะถูก commit" ใช้เตรียมก่อน commit (VCS อื่นไม่มี)</div>
-<figure><div class="plate"><img src="img/L11_p18.jpg" alt="สไลด์ L11 หน้า 18: File Status Lifecycle (untracked / staged / unmodified / modified)" loading="lazy"></div><figcaption>สไลด์ L11 หน้า 18: File Status Lifecycle (untracked / staged / unmodified / modified)</figcaption></figure>
+
 <p>ลำดับ: <b>working directory &rarr; (git add) &rarr; staging area &rarr; (git commit) &rarr; local repository &rarr; (git push) &rarr; remote repository</b></p>
 
 <h2 class="sec">3.4 คำสั่งหลักจากสไลด์</h2>
@@ -569,7 +565,7 @@ main:focus,h1:focus{outline:none}
 <li>Branching เป็นของชั่วคราว ได้รับการสนับสนุน; merge ส่วนมากอัตโนมัติ แต่ <b>conflict</b> ตอน merge เป็นปัญหา ควรมี workflow ที่กำหนดไว้</li>
 </ul>
 <h3 class="subsec">Git branching model (nvie)</h3>
-<figure><div class="plate"><img src="img/L11_p28.jpg" alt="L11 หน้า 28: master กับ develop" loading="lazy"></div><figcaption>L11 หน้า 28: master กับ develop</figcaption></figure><figure><div class="plate"><img src="img/L11_p30.jpg" alt="L11 หน้า 30: Feature branches" loading="lazy"></div><figcaption>L11 หน้า 30: Feature branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p31.jpg" alt="L11 หน้า 31: Release branches" loading="lazy"></div><figcaption>L11 หน้า 31: Release branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p32.jpg" alt="L11 หน้า 32: Hotfix branches" loading="lazy"></div><figcaption>L11 หน้า 32: Hotfix branches</figcaption></figure><figure><div class="plate"><img src="img/L11_p33.jpg" alt="L11 หน้า 33: The Whole Picture" loading="lazy"></div><figcaption>L11 หน้า 33: The Whole Picture</figcaption></figure>
+
 <table>
 <tr><th>Branch</th><th>บทบาท</th><th>แตกจาก &rarr; รวมกลับ</th></tr>
 <tr><td><b>master</b></td><td>source code สะท้อนสถานะ <b>production-ready</b> เสมอ (มี tag เช่น 0.1, 1.0, 1.2.1)</td><td>main</td></tr>
@@ -588,7 +584,7 @@ main:focus,h1:focus{outline:none}
 <h1 class="sheet">4. Unit test (+ JUnit + แบบฝึกหัด 5–8)</h1>
 
 <h2 class="sec">4.1 Testing และระดับของการทดสอบ</h2>
-<figure><div class="plate"><img src="img/L13_p16.jpg" alt="L13 หน้า 16: เทียบ Unit / Integration / System test" loading="lazy"></div><figcaption>L13 หน้า 16: เทียบ Unit / Integration / System test</figcaption></figure><figure><div class="plate"><img src="img/L13_p19.jpg" alt="L13 หน้า 19: Validation and Verification Activities" loading="lazy"></div><figcaption>L13 หน้า 19: Validation and Verification Activities</figcaption></figure>
+
 <div class="def"><b>Testing</b> = กิจกรรมหาว่าโค้ด (method, class, program) ให้พฤติกรรมตามที่ตั้งใจหรือไม่ / กระบวนการประเมินซอฟต์แวร์ด้านความถูกต้อง ความครบถ้วน คุณภาพ &bull; พบบั๊กเร็ว ลดต้นทุน เพิ่มความเชื่อมั่น</div>
 <table>
 <tr><th></th><th>Unit / Module test</th><th>Integration test</th><th>System test</th></tr>
@@ -617,7 +613,7 @@ main:focus,h1:focus{outline:none}
 <p>Best practices: โค้ด modular/แยกส่วน &bull; ใส่ใน CI/CD &bull; จำลอง dependency (simulate/mock) &bull; ใช้ coverage เพื่อเข้าใจว่าทดสอบไปแค่ไหน เน้น <i>meaningful coverage</i> ไม่ต้อง 100%</p>
 
 <h2 class="sec">4.3 JUnit</h2>
-<figure><div class="plate"><img src="img/L13_p12.jpg" alt="L13 หน้า 12: Assertion methods ใน JUnit" loading="lazy"></div><figcaption>L13 หน้า 12: Assertion methods ใน JUnit</figcaption></figure><figure><div class="plate"><img src="img/L13_p14.jpg" alt="L13 หน้า 14: ตัวอย่าง JUnit (Student / StudentTest)" loading="lazy"></div><figcaption>L13 หน้า 14: ตัวอย่าง JUnit (Student / StudentTest)</figcaption></figure>
+
 <ul>
 <li>เป็น unit testing framework ของ Java มาตรฐาน TDD (พัฒนาช่วงกลางทศวรรษ 90) ผูกเป็น <b>JAR ตอน compile</b>; ใช้กับ Eclipse, Ant, Maven</li>
 <li>ให้ <b>Annotation</b> ระบุ test method + <b>assertion methods</b> ตรวจผลที่คาดหวัง + <b>test runner</b> รันเทส</li>
@@ -673,7 +669,7 @@ public void testGetDisplayNameNospace() {
 <p>&le;0: <code>-1</code> &bull; 1–500: <code>1, 500</code> &bull; 501–999: <code>501, 999</code> &bull; 1,000–4,999: <code>1000, 4999</code> &bull; 5,000–100,000: <code>5000, 100000</code> &bull; &gt;100,000: <code>100001</code></p>
 
 <h3 class="subsec">White-box: Path analysis และ Cyclomatic complexity (Exercise 8)</h3>
-<figure><div class="plate"><img src="img/L12_p33.jpg" alt="L12 หน้า 33: Path analysis" loading="lazy"></div><figcaption>L12 หน้า 33: Path analysis</figcaption></figure><figure><div class="plate"><img src="img/L12_p34.jpg" alt="L12 หน้า 34: ตัวอย่าง CASE structure" loading="lazy"></div><figcaption>L12 หน้า 34: ตัวอย่าง CASE structure</figcaption></figure><figure><div class="plate"><img src="img/L12_p35.jpg" alt="L12 หน้า 35: ตัวอย่าง Loop" loading="lazy"></div><figcaption>L12 หน้า 35: ตัวอย่าง Loop</figcaption></figure><figure><div class="plate"><img src="img/L12_p36.jpg" alt="L12 หน้า 36: Linearly Independent Set of Paths" loading="lazy"></div><figcaption>L12 หน้า 36: Linearly Independent Set of Paths</figcaption></figure><figure><div class="plate"><img src="img/L12_p37.jpg" alt="L12 หน้า 37: จำนวน path ทั้งหมดและ linearly independent" loading="lazy"></div><figcaption>L12 หน้า 37: จำนวน path ทั้งหมดและ linearly independent</figcaption></figure><figure><div class="plate"><img src="img/L12_p38.jpg" alt="L12 หน้า 38: โน้ตลายมือของคุณ (FindLar_3)" loading="lazy"></div><figcaption>L12 หน้า 38: โน้ตลายมือของคุณ (FindLar_3)</figcaption></figure><figure><div class="plate"><img src="img/L13_p40.jpg" alt="L13 หน้า 40: โน้ตลายมือของคุณ (Exercise 8)" loading="lazy"></div><figcaption>L13 หน้า 40: โน้ตลายมือของคุณ (Exercise 8)</figcaption></figure>
+
 <div class="def">ขั้นตอน Linearly Independent Set of Paths: <b>(1) คำนวณจำนวน independent path = จำนวน decision node + 1 (Cyclomatic number)</b> (2) ลิสต์ path ที่เป็นไปได้ทั้งหมด (3) เลือกชุด path ที่ <b>linearly independent</b> = แต่ละ path เพิ่ม <b>edge ใหม่อย่างน้อย 1 เส้น</b> ที่ path ก่อนหน้าไม่มี</div>
 <ul>
 <li>ถ้ามี 3 decision ต่อกัน มี path ที่เป็นไปได้ทั้งหมด 2<sup>3</sup> = 8 (logical paths) แต่ linearly independent มีแค่ 3+1 = <b>4</b></li>
@@ -812,32 +808,6 @@ public void testGetDisplayNameNospace() {
   });
   lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
   document.getElementById("lbx").addEventListener("click",function(){lb.close()});
-
-  var spots=[
-    {x:262,y:335,rx:40,ry:64,t:"<b>DF1</b>: E1 ส่งข้อมูลตรงไปหา E1 (entity &rarr; entity) ไม่ผ่าน process ผิดกฎ flow ต้องเริ่มหรือจบที่ process"},
-    {x:372,y:265,rx:50,ry:50,t:"<b>DF5</b>: E1 เขียนเข้า data store DS1 ตรงๆ (entity &rarr; store) ไม่ผ่าน process"},
-    {x:512,y:240,rx:64,ry:58,t:"<b>P2 (1.0)</b>: มี input (DF2, DF3) แต่ไม่มี output ผิดกฎ process ต้องมีอย่างน้อย 1 input และ 1 output"}
-  ];
-  var plate=document.getElementById("hplate"),marks=plate.querySelector(".marks"),found={};
-  function mark(i){
-    if(found[i])return;found[i]=1;
-    var s=spots[i],el=document.createElementNS("http://www.w3.org/2000/svg","ellipse");
-    el.setAttribute("cx",s.x);el.setAttribute("cy",s.y);el.setAttribute("rx",s.rx);el.setAttribute("ry",s.ry);el.setAttribute("pathLength","1");
-    marks.appendChild(el);
-    var li=document.createElement("li");li.innerHTML=s.t;document.getElementById("hl").appendChild(li);
-    document.getElementById("hc").textContent="พบ "+Object.keys(found).length+" / 3";
-  }
-  plate.addEventListener("click",function(e){
-    var r=plate.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*842,y=(e.clientY-r.top)/r.height*595,hit=-1;
-    spots.forEach(function(s,i){var dx=(x-s.x)/(s.rx*1.25),dy=(y-s.y)/(s.ry*1.25);if(dx*dx+dy*dy<=1)hit=i});
-    if(hit>=0)mark(hit);else{plate.classList.remove("miss");void plate.offsetWidth;plate.classList.add("miss")}
-  });
-  document.getElementById("hpick").addEventListener("click",function(e){
-    var b=e.target.closest(".pk");if(!b)return;var i=+b.dataset.s,m=document.getElementById("hmsg");
-    if(i>=0){mark(i);b.classList.add("hit");m.textContent=b.textContent+" ผิดกฎจริง";}
-    else{b.classList.add("miss");m.textContent=b.textContent+" ไม่ผิดกฎ ลองตัวอื่น";plate.classList.remove("miss");void plate.offsetWidth;plate.classList.add("miss");}
-  });
-  document.getElementById("hall").addEventListener("click",function(){spots.forEach(function(_,i){mark(i)})});
 
   refresh();
   route(true);
