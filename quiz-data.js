@@ -5,7 +5,6 @@
   'use strict';
   function Q(q, o, why, src, extra) { var r = { q: q, o: o, a: 0, why: why, src: src }; if (extra) for (var k in extra) r[k] = extra[k]; return r; }
   function A(auto, spec, q, why, src) { return { auto: auto, spec: spec, q: q, why: why, src: src }; }
-  function I(img, q, o, why, src) { return Q(q, o, why, src, { img: img }); }
 
   /* ---------- diagrams (n: nodes, f: flows) ---------- */
   var DA = { w: 560, h: 300,

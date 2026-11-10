@@ -138,7 +138,6 @@
     h += '</div>';
     h += '<p class="qtext">' + q.q + '</p>';
     if (q.spec && !q.type) h += '<div class="qfig">' + drawDFD(q.spec) + '</div>';
-    if (q.img) h += '<div class="qfig"><img src="' + q.img + '" alt="รูปสไลด์ประกอบข้อสอบ"></div>';
     if (q.type) h += '<div class="ix' + (a === null ? '' : (a === q.a ? ' done-ok' : ' done-no')) + '" id="ixbox"></div>';
     else {
       h += '<div class="opts">';
