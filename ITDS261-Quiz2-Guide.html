@@ -44,15 +44,13 @@ main{max-width:1220px;margin:0 auto;padding:28px 20px 40px}
 @keyframes sheetIn{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
 @media(min-width:1120px){
   .page:not(.cover){padding-right:440px}
-  .page:not(.cover) figure{float:right;clear:right;width:380px;margin:6px -400px 18px 24px}
   .page:not(.cover)::after{content:"";display:block;clear:both}
 }
 @media(min-width:1120px){
   #err{padding-right:44px}
-  #err figure{float:none;width:100%;max-width:640px;margin:14px 0 20px}
 }
 .page>*{max-width:70ch}
-#err .hunt{max-width:760px}.page>.turn,.page>.top,.page>.index,.page>.two,.page>.tb{max-width:none}
+.page>.turn,.page>.top,.page>.index,.page>.two,.page>.tb{max-width:none}
 
 h1,h2,h3,h4{font-family:var(--head);color:var(--ink);text-wrap:balance}
 h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:.01em}
@@ -107,27 +105,8 @@ table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.96rem;display
 th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;line-height:1.55}
 th{background:var(--chip);font:700 14px/1.4 var(--head);letter-spacing:.04em}
 
-figure{margin:18px 0}
-.plate{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px var(--shadow)}
-.plate img{display:block;width:100%;height:auto;cursor:zoom-in}
-:root[data-theme="dark"] .plate img{filter:brightness(.94)}
-figcaption{margin-top:8px;font:500 13px/1.45 var(--head);letter-spacing:.03em;color:var(--muted)}
-.js figure:not(.seen) .plate img{clip-path:inset(0 100% 0 0)}
-.js figure .plate img{transition:clip-path .9s cubic-bezier(.3,.7,.2,1)}
-.js figure.seen .plate img{clip-path:inset(0 0 0 0)}
 
-.hunt-ui{border:1px solid var(--accent-ink);padding:12px 14px;margin:0 0 20px;font-size:.98rem}
-.hunt-ui b{font:700 18px/1 var(--head);color:var(--accent-ink)}
-.hunt-ui button{margin-left:10px}
-#hl{list-style:none;padding:0;margin:0}
-#hl li{border-top:1px solid var(--line);padding-top:8px;margin-top:8px;animation:fade .5s both}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.marks ellipse{fill:none;stroke:#d62f3a;stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .7s cubic-bezier(.3,.7,.2,1) forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-.plate.miss{animation:miss .35s}
-@keyframes miss{20%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
-.hunt .plate img{cursor:crosshair}
 
 button.btn,a.go{display:inline-block;cursor:pointer;border:0;background:var(--btn-bg);color:var(--btn-ink);padding:12px 22px;font:700 16px/1.2 var(--head);letter-spacing:.04em;text-decoration:none}
 button.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line);padding:8px 14px;font-size:14px}
@@ -167,14 +146,9 @@ label.chk input{width:22px;height:22px;accent-color:var(--accent)}
 @keyframes stamp{from{transform:rotate(-14deg) scale(1.9);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
 .cover .two{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:10px}
 
-dialog{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:14px;max-width:min(96vw,1500px);width:96vw}
-dialog::backdrop{background:rgba(3,14,36,.82)}
-dialog img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:#fff}
-dialog .cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font:500 14px/1.4 var(--head)}
 
 @media(max-width:1119px){
   .page{padding:24px 20px}
-  figure{max-width:560px}
   .cover .top,.cover .two{grid-template-columns:1fr;gap:20px}
   .index a.row{grid-template-columns:2.6rem 1fr}
   .index .m,.index .stamp{grid-column:2;justify-self:start}
@@ -187,9 +161,7 @@ dialog .cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .js figure:not(.seen) .plate img{clip-path:none}
   .stamp.on{opacity:1}
-  .marks ellipse{stroke-dashoffset:0}
 }
 
 :root{--em:#ffe08a;--ok:#5ee39b;--no:#ff7b7b}
@@ -272,13 +244,6 @@ svg.dfd{width:100%;height:auto;background:var(--panel);border:1px solid var(--li
 .skip{position:absolute;left:12px;top:-60px;z-index:40;background:var(--btn-bg);color:var(--btn-ink);border:0;padding:10px 16px;font:700 15px/1 var(--head);cursor:pointer}
 .skip:focus{top:8px}
 main:focus,h1:focus{outline:none}
-.pick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.95rem}
-.pk{cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;min-height:36px;font:500 14px/1.2 var(--head)}
-.pk:hover{background:var(--chip)}
-.pk.hit{border-color:var(--ok);color:var(--ok)}
-.pk.miss{border-color:var(--no);color:var(--no)}
-.hmsg{min-height:1.5em;font-weight:600;margin:4px 0}
-.plate img[role=button]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .page h2.sec{font-size:1.3rem;line-height:1.4;margin:34px 0 8px;color:var(--brand)}
 .page h3.subsec{font-size:1.08rem;margin:20px 0 4px;color:var(--ink)}
 </style>
@@ -708,7 +673,6 @@ public void testGetDisplayNameNospace() {
 </main>
 <footer style="text-align:center;color:var(--muted);font-size:14px;padding:0 0 30px"><a href="#src">แหล่งที่มาและข้อจำกัด</a> &middot; สร้างจากสไลด์ L6, L7, L11, L12, L13</footer>
 
-<dialog id="lb"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><div class="cap"><span id="lbc"></span><button class="btn alt" id="lbx" type="button">ปิด (Esc)</button></div></dialog>
 <script src="quiz-data.js"></script>
 <script src="quiz-data4.js"></script>
 <script src="quiz-data5.js"></script>
@@ -775,12 +739,7 @@ public void testGetDisplayNameNospace() {
   if(now.getFullYear()===2026&&now.getMonth()===10)document.querySelectorAll(".tl li").forEach(function(li){if(+li.dataset.d===now.getDate())li.classList.add("now")});
 
   document.getElementById("skip").addEventListener("click",function(){var m=document.querySelector(".page.on h1")||document.getElementById("content");m.setAttribute("tabindex","-1");m.focus();});
-  /* 5: slide images open with keyboard too */
-  document.querySelectorAll(".page figure img").forEach(function(img){if(img.closest(".hunt"))return;img.tabIndex=0;img.setAttribute("role","button");img.setAttribute("aria-label","ขยายรูป: "+img.alt);});
-  document.addEventListener("keydown",function(e){var img=e.target;if((e.key==="Enter"||e.key===" ")&&img.matches&&img.matches(".page figure img[role=button]")){e.preventDefault();img.click();}});
   var pages=document.querySelectorAll(".page");
-  var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("seen");io.unobserve(e.target)}})},{threshold:.15}):null;
-  function observe(){document.querySelectorAll(".page.on figure:not(.seen)").forEach(function(f){if(io)io.observe(f);else f.classList.add("seen")})}
   function route(first){
     var id=(location.hash||"#home").slice(1);
     if(!document.querySelector(".page#"+id))id="home";
@@ -790,24 +749,15 @@ public void testGetDisplayNameNospace() {
     /* deep link: browser jumps to the section anchor, hiding the h1 under the bar; keep reload position */
     else if(location.hash&&(performance.getEntriesByType("navigation")[0]||{}).type==="navigate")addEventListener("load",function(){window.scrollTo(0,0)});
     document.title=(names[id]||"แหล่งที่มา")+" | ITDS261 Quiz 2";
-    observe();
   }
   window.addEventListener("hashchange",function(){route(false)});
   window.addEventListener("keydown",function(e){
-    if(e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA|SUMMARY/.test(e.target.tagName)||document.getElementById("lb").open||document.querySelector("#qroot .qtext"))return;
+    if(e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA|SUMMARY/.test(e.target.tagName)||document.querySelector("#qroot .qtext"))return;
     var id=(location.hash||"#home").slice(1),i=order.indexOf(id);if(i<0)return;
     if(e.key==="ArrowRight"&&order[i+1])location.hash="#"+order[i+1];
     if(e.key==="ArrowLeft"&&order[i-1])location.hash="#"+order[i-1];
   });
 
-  var lb=document.getElementById("lb"),lim=lb.querySelector("img");
-  document.addEventListener("click",function(e){
-    var img=e.target.closest&&e.target.closest(".page figure img");
-    if(!img||img.closest(".hunt"))return;
-    lim.src=img.src;lim.alt=img.alt;document.getElementById("lbc").textContent=img.alt;lb.showModal();
-  });
-  lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
-  document.getElementById("lbx").addEventListener("click",function(){lb.close()});
 
   refresh();
   route(true);
