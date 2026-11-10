@@ -144,15 +144,6 @@
   ];
 
   var err2 = [
-    I('img/L6_p38.jpg', 'ในสไลด์นี้ process ใดมี input และ output ครบ และมีเลขกำกับ?', ['5.0 Create Invoice', 'Apply Insurance Premium', '2.1 Calculate Gross Pay', 'ทั้งสาม process'], '5.0 Create Invoice มี Services Performed เข้าและ Invoice ออก ส่วนอีกสองตัวไม่ครบ', R2),
-    I('img/L6_p38.jpg', 'ในสไลด์นี้ "Apply Insurance Premium" ผิดเพราะอะไร?', ['มีแต่ output (ไม่มี input)', 'มีแต่ input (ไม่มี output)', 'data flow ไม่มีชื่อ', 'process เชื่อมกับ entity สองตัว'], 'Policy Number และ Payment Amount เป็นลูกศรที่ออกจาก process ทั้งคู่ ไม่มี input (และไม่มีเลขกำกับ)', R2),
-    I('img/L6_p38.jpg', 'ในสไลด์นี้ "2.1 Calculate Gross Pay" ผิดเพราะอะไร?', ['มีแต่ input (ไม่มี output)', 'มีแต่ output (ไม่มี input)', 'ไม่มีเลขกำกับ', 'ถูกกฎอยู่แล้ว'], 'Hours Worked และ Pay Rate เป็นลูกศรที่เข้า process ทั้งคู่ ไม่มีลูกศรออก', R2),
-    I('img/L6_p39.jpg', 'ในสไลด์นี้แผนภาพทางซ้าย (Courses → Class List → Students) ผิดเพราะอะไร?', ['เป็น data store ต่อกับ data store โดยไม่ผ่าน process', 'process ไม่มีเลข', 'flow ไม่มีชื่อ', 'มี external entity มากเกินไป'], 'store ต่อ store ไม่มี process อยู่ปลายใดเลย', R1),
-    I('img/L6_p39.jpg', 'ในสไลด์นี้แผนภาพทางขวา flow ระหว่าง 5.0 Post Payment, D2 Daily Payments และ 6.0 Prepare Deposit ถูกกฎเรื่องปลายทางของ flow หรือไม่?', ['ถูก เพราะ flow ทุกเส้นมี process อยู่ปลายหนึ่ง', 'ผิด เพราะ data store ต้องอยู่ปลายสุด', 'ผิด เพราะต้องมี external entity คั่น', 'ผิด เพราะ flow เชื่อม process กับ process ไม่ได้'], 'Customer Payment และ Daily Payment ต่างเชื่อมกับ process (ภาพเป็นส่วนของแผนภาพ จึงไม่ตัดสินเรื่อง input/output ของแต่ละ process)', R1),
-    I('img/L6_p40.jpg', 'ในสไลด์นี้แผนภาพทางซ้าย flow "Flight Request" จาก data store Passengers ไปยัง 2.0 Book Flight หมายถึงอะไร?', ['การดึงข้อมูล (retrieval) จาก store ไปให้ process', 'การอัปเดตข้อมูลใน store', 'การส่งข้อมูลไป external entity', 'การสร้าง data store ใหม่'], 'ลูกศรที่ออกจาก data store ไปยัง process คือ data retrieval', 'L6 หน้า 16, 40'),
-    I('img/L6_p40.jpg', 'ในสไลด์นี้แผนภาพทางขวา flow Invoice Detail และ Payment Detail ระหว่าง D2 Accounts Receivable กับ 3.0 Post Payment สื่อว่าอะไร?', ['process อ่านข้อมูลจาก store (Invoice Detail) และอัปเดตกลับ (Payment Detail) ได้', 'process ห้ามเชื่อมกับ data store สองเส้น', 'store ส่งข้อมูลให้ entity ได้โดยตรง', 'flow สองเส้นระหว่างคู่เดียวกันผิดเสมอ'], 'ลูกศรออกจาก store คือ retrieval ลูกศรเข้า store คือ update ทั้งสองเส้นมี process อยู่ปลายหนึ่ง', 'L6 หน้า 16, 40'),
-    I('img/L6_p41.jpg', 'ในสไลด์นี้ PAYROLL DEPARTMENT → Paycheck → EMPLOYEE ผิดเพราะอะไร?', ['เป็น entity ถึง entity โดยไม่ผ่าน process', 'ไม่มี data store', 'process ไม่มีเลข', 'flow ไม่มีชื่อ'], 'Paycheck เชื่อม external entity สองตัวโดยตรง', R1),
-    I('img/L6_p41.jpg', 'ในสไลด์นี้ CUSTOMER → Payment → Accounts Receivable (data store) ผิดเพราะอะไร?', ['เป็น external entity ตรงเข้า data store ไม่ผ่าน process', 'process ไม่มี output', 'ชื่อ flow เป็น implementation', 'data store ไม่มีเลข'], 'ต้องมี process คั่น เช่นภาพกลาง CUSTOMER → 3.0 Apply Payment', R1),
     A('count', DF, 'แผนภาพนี้มีจุดที่ผิดกฎกี่จุด?', 'มี 2 จุด: flow "ประวัติผู้ป่วย" จาก entity เข้า D1 ตรงๆ และ process 2.0 "ส่งการแจ้งเตือน" ไม่มี output', 'L7 หน้า 9; L6 หน้า 28'),
     A('flow1', DF, 'data flow เส้นใดในแผนภาพนี้ที่ไม่มี process อยู่ปลายใดเลย?', 'flow "ประวัติผู้ป่วย" เชื่อม external entity กับ data store ตรงๆ', R1),
     A('proc2', DF, 'process ใดในแผนภาพนี้ที่ไม่มี output?', '2.0 ส่งการแจ้งเตือน มีแต่ flow เข้าจาก D1 ไม่มี flow ออก', R2),
@@ -167,9 +158,6 @@
   ];
 
   var err3 = [
-    I('img/L6_p42.jpg', 'ตามกฎในสไลด์ (flow ต้องเริ่มหรือจบที่ process และ process ต้องมี input กับ output) แผนภาพนี้มีจุดผิดกี่จุด?', ['3 จุด', '1 จุด', '2 จุด', '5 จุด'], 'DF1 (E1 → E1), DF5 (E1 → DS1) และ P2 (1.0) ที่มี input (DF2, DF3) แต่ไม่มี output เป็นการวิเคราะห์ของผู้จัดทำ ไม่ใช่เฉลยทางการ', 'L6 หน้า 42'),
-    I('img/L6_p42.jpg', 'flow ใดในแผนภาพนี้เชื่อม external entity กับ external entity โดยตรง?', ['DF1', 'DF5', 'DF3', 'DF6'], 'DF1 วิ่งจากกล่อง E1 ด้านบนไป E1 ด้านล่าง', 'L6 หน้า 42'),
-    I('img/L6_p42.jpg', 'process ใดในแผนภาพนี้ไม่มี output?', ['P2 (1.0)', 'P1 (2.0)', 'ทั้งสอง process', 'ไม่มี process ที่ผิด'], 'P2 (1.0) รับ DF2 และ DF3 แต่ไม่มี flow ออก ส่วน P1 (2.0) มี input DF6, DF2 และ output DF3, DF4', 'L6 หน้า 42'),
     A('count', DH, 'แผนภาพนี้มีจุดที่ผิดกฎรวมกี่จุด?', 'มี 4 จุด: store→store (ข้อมูลสำรอง), entity→entity (ข้อมูลบัตรซ้ำ), flow ไม่มีชื่อ (2.0 ไปยัง D1) และ process 3.0 มีแต่ input', 'L7 หน้า 9; L6 หน้า 27–28'),
     A('count1', DH, 'ในแผนภาพนี้ มี flow ที่ไม่มี process อยู่ปลายใดเลยกี่เส้น?', '2 เส้น: "ข้อมูลสำรอง" (D1 → D2) และ "ข้อมูลบัตรซ้ำ" (ลูกค้า → ธนาคาร)', R1),
     A('count2', DH, 'ในแผนภาพนี้ มี process ที่ผิดกฎ input/output กี่ตัว?', '1 ตัว คือ 3.0 ตรวจสอบยอด ที่มีเฉพาะ input จาก D1', R2),
