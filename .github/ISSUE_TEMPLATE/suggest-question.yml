@@ -1,0 +1,22 @@
+name: เฉลยผิด / เสนอข้อสอบ
+description: แจ้งข้อที่เฉลยผิด หรือเสนอข้อสอบใหม่
+title: "[ข้อสอบ] "
+body:
+  - type: dropdown
+    id: module
+    attributes:
+      label: หัวข้อ
+      options: ["DFD", "Error detection", "Git", "Unit test"]
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: ข้อไหน / เนื้อหาที่เสนอ
+      description: เช่น ชุด Git ชุด 2 ข้อ 5
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: เหตุผลหรืออ้างอิงสไลด์
