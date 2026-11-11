@@ -1,0 +1,17 @@
+name: แจ้งปัญหา / เสนอแนะ
+description: เว็บมีบั๊ก หรืออยากให้ปรับอะไร
+title: "[แจ้งปัญหา] "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: ประเภท
+      options: ["บั๊ก", "อยากให้ปรับ", "เนื้อหาผิด", "อื่น ๆ"]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: รายละเอียด
+    validations:
+      required: true
