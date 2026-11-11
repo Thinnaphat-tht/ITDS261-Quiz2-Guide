@@ -1,15 +1,11 @@
-<a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/"><img src="docs/banner.jpg" alt="ITDS261 Quiz 2 Study Guide: DFD, หา Error ใน DFD, Git, Unit test พร้อมข้อสอบ 228 ข้อ"></a>
+<a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/"><img src="assets/hero.svg" width="100%" alt="ITDS261 Quiz 2: DFD, Error detection, Git, Unit test"></a>
 
 <p align="center">
   <a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/"><img alt="เปิดเว็บติว" src="https://img.shields.io/badge/Open_the_guide-ffc84a?style=for-the-badge&labelColor=0a2f62"></a>
-  <a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 228 ข้อ" src="https://img.shields.io/badge/Quiz-228_questions-9fd0ff?style=for-the-badge&labelColor=0a2f62"></a>
+  <a href="https://thinnaphat-tht.github.io/ITDS261-Quiz2-Guide/ITDS261-Quiz2-Guide.html#quiz"><img alt="ทำข้อสอบ 240 ข้อ" src="https://img.shields.io/badge/Quiz-240_questions-9fd0ff?style=for-the-badge&labelColor=0a2f62"></a>
+  <a href="https://github.com/Thinnaphat-tht/ITDS261-Quiz2-Guide/issues/new/choose"><img alt="แจ้งเฉลยผิด" src="https://img.shields.io/badge/Report_an_error-1450b0?style=for-the-badge&labelColor=0a2f62"></a>
 </p>
 
-<p align="center">
-  <img alt="HTML, CSS, JavaScript ไม่มี framework" src="https://img.shields.io/badge/HTML_%C2%B7_CSS_%C2%B7_JS-no_framework-1450b0?style=flat-square">
-  <img alt="ใช้ออฟไลน์ได้" src="https://img.shields.io/badge/offline-ready-1450b0?style=flat-square">
-  <img alt="ธีมสว่าง/มืด" src="https://img.shields.io/badge/theme-light_%2F_dark-1450b0?style=flat-square">
-</p>
 
 เว็บติวสอบ Quiz 2 วิชา ITDS261 Software Engineering (ICT มหิดล) ครอบคลุม 4 หัวข้อที่ประกาศสอบ: **DFD Understanding**, **Error detection in DFD**, **Git functions** และ **Unit test** พร้อมข้อสอบฝึก 228 ข้อ
 
